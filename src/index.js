@@ -15,14 +15,33 @@ import './assets/scss/style.scss'
 import App from './app'
 import store from './store';
 
-ReactDOM.render(
-  <React.StrictMode>
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <StoreProvider store={store}>
+//       <App />
+//     </StoreProvider>
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
+
+if (process.env.NODE_ENV !== 'development') {
+  ReactDOM.render(
+    <React.StrictMode>
+      <StoreProvider store={store}>
+        <App />
+      </StoreProvider>
+    </React.StrictMode>
+    ,
+    document.getElementById('root')
+  );
+} else {
+  ReactDOM.render(
     <StoreProvider store={store}>
       <App />
-    </StoreProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+    </StoreProvider>,
+    document.getElementById('root')
+  );
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
