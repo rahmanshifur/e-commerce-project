@@ -1,9 +1,10 @@
 import { action } from "easy-peasy";
 import shortid from "shortid";
+import { getLocalData, setLocalData } from './../../util/helper';
 
 
 const CategoryModel = {
-    data: [],
+    data: getLocalData('category'),
     editItem: {},
     create: action((state, payload) => {
         let obj = {
@@ -11,6 +12,7 @@ const CategoryModel = {
             name: payload,
         }
         state.data.push(obj)
+        setLocalData('category', state.data)
     }),
     edit: action((state, payload) => {
         state.editItem = state.data.filter(item => item.id === payload)[0]
@@ -24,10 +26,12 @@ const CategoryModel = {
         })
         state.editItem = {}
         state.data = arr
+        setLocalData('category', state.data)
     }),
     remove: action((state, payload) => {
         let arr = state.data.filter(item => item.id !== payload)
         state.data = arr
+        setLocalData('category', state.data)
     })
 
 }

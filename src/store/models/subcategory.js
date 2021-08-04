@@ -1,10 +1,11 @@
 import { action } from "easy-peasy";
-import
-shortid from 'shortid';
+import shortid from 'shortid';
+import { getLocalData, setLocalData } from "../../util/helper";
+
 
 
 const SubCategoryModel = {
-    data: [],
+    data: getLocalData('subcategory'),
     editItem: {},
     create: action((state, payload) => {
         let obj = {
@@ -13,6 +14,7 @@ const SubCategoryModel = {
             category: payload.category,
         }
         state.data.push(obj)
+        setLocalData('subcategory', state.data)
     }),
     edit: action((state, payload) => {
         state.editItem = state.data.filter(item => item.id === payload)[0]
@@ -27,12 +29,13 @@ const SubCategoryModel = {
         })
         state.editItem = {}
         state.data = arr
+        setLocalData('subcategory', state.data)
     }),
     remove: action((state, payload) => {
         let arr = state.data.filter(item => item.id !== payload)
         state.data = arr
         state.editItem = {}
-
+        setLocalData('subcategory', state.data)
     })
 
 }
