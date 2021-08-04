@@ -1,9 +1,10 @@
 import { action } from "easy-peasy";
 import shortid from "shortid";
+import { getLocalData, setLocalData } from "../../util/helper";
 
 
 const ProductModel = {
-    data: [],
+    data: getLocalData('product'),
     editItem: {},
     create: action((state, payload) => {
         let obj = {
@@ -20,6 +21,8 @@ const ProductModel = {
             tags: payload.tags,
         }
         state.data.push(obj)
+        setLocalData('product', state.data)
+
     }),
     edit: action((state, payload) => {
         state.editItem = state.data.filter(item => item.id === payload)[0]
@@ -34,11 +37,15 @@ const ProductModel = {
         })
         state.editItem = {}
         state.data = arr
+        setLocalData('product', state.data)
+
     }),
     remove: action((state, payload) => {
         let arr = state.data.filter(item => item.id !== payload)
         state.data = arr
         state.editItem = {}
+        setLocalData('product', state.data)
+
 
     })
 

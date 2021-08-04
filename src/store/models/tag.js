@@ -1,9 +1,10 @@
 import { action } from "easy-peasy";
 import shortid from "shortid";
+import { getLocalData, setLocalData } from "../../util/helper";
 
 
 const TagModel = {
-    data: [],
+    data: getLocalData('tag'),
     editItem: {},
     create: action((state, payload) => {
         let obj = {
@@ -11,6 +12,8 @@ const TagModel = {
             name: payload
         }
         state.data.push(obj)
+        setLocalData('tag', state.data)
+
     }),
     edit: action((state, payload) => {
         state.editItem = state.data.filter(item => item.id === payload)[0]
@@ -25,11 +28,14 @@ const TagModel = {
         })
         state.editItem = {}
         state.data = arr
+        setLocalData('tag', state.data)
+
     }),
     remove: action((state, payload) => {
         let arr = state.data.filter(item => item.id !== payload)
         state.data = arr
         state.editItem = {}
+        setLocalData('tag', state.data)
 
     })
 

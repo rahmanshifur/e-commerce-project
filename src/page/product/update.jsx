@@ -79,7 +79,7 @@ class Update extends Component {
                         type='number'
                         name='price'
                         value={price}
-                        placeholder='Enter number'
+                        placeholder='Enter price'
                         onChange={this.changeHandler}
                         required
                     />
@@ -99,69 +99,85 @@ class Update extends Component {
                         onChange={this.changeHandler}
                         required
                     />
-                    <select
-                        name='category_id'
-                        value={category_id}
-                        onChange={this.changeHandler}
-                        required
-                    >
-                        <option value='0'>Select Category</option>
-                        {categoryData && categoryData.length > 0 && categoryData.map((item) =>
-                            <option key={item.id} value={item.id}>{item.name}</option>
-                        )}
-                    </select>
-                    <select
-                        name='subcategory_id'
-                        value={subcategory_id}
-                        onChange={this.changeHandler}
-                        required
-                    >
-                        <option value='0'>Select Subcategory</option>
-                        {subcategoryData && subcategoryData.length > 0 && subcategoryData.map((item) => item.category === category_id &&
-                            < option key={item.id} value={item.id} > {item.name}</option>
-                        )}
-                    </select>
-                    <select
-                        name='colors'
-                        value={colors}
-                        onChange={this.changeHandler}
-                        required
-                    >
-                        <option value='0'>Select Color</option>
-                        {colorData && colorData.length > 0 && colorData.map((item) =>
-                            <option key={item.id} value={item.id}>{item.name}</option>
-                        )}
-                    </select>
-                    <select
-                        name='sizes'
-                        value={sizes}
-                        onChange={this.changeHandler}
-                        required
-                    >
-                        <option value='0'>Select Size</option>
-                        {sizeData && sizeData.length > 0 && sizeData.map((item) =>
-                            <option key={item.id} value={item.id}>{item.name}</option>
-                        )}
-                    </select>
-                    <select
-                        name='tags'
-                        value={tags}
-                        onChange={this.changeHandler}
-                        required
-                    >
-                        <option value='0'>Select Tag</option>
-                        {tagData && tagData.length > 0 && tagData.map((item) =>
-                            <option key={item.id} value={item.id}>{item.name}</option>
-                        )}
-                    </select>
-                    <textarea
-                        type='text'
-                        name='description'
-                        value={description}
-                        placeholder='Enter description'
-                        onChange={this.changeHandler}
-                        required
-                    />
+                    <div>
+                        <select
+                            name='category_id'
+                            value={category_id}
+                            onChange={this.changeHandler}
+                            required
+                        >
+                            <option value=''>Select Category</option>
+                            {categoryData && categoryData.length > 0 && categoryData.map((item) =>
+                                <option key={item.id} value={item.id}>{item.name}</option>
+                            )}
+                        </select>
+                    </div>
+                    <div>
+
+                        <select
+                            name='subcategory_id'
+                            value={subcategory_id}
+                            onChange={this.changeHandler}
+                            required
+                        >
+                            <option value=''>Select Subcategory</option>
+                            {subcategoryData && subcategoryData.length > 0 && subcategoryData.map((item) => item.category === category_id &&
+                                < option key={item.id} value={item.id} > {item.name}</option>
+                            )}
+                        </select>
+                    </div>
+                    <div>
+
+                        <select
+                            name='colors'
+                            value={colors}
+                            onChange={this.changeHandler}
+                            required
+                        >
+                            <option value=''>Select Color</option>
+                            {colorData && colorData.length > 0 && colorData.map((item) =>
+                                <option key={item.id} value={item.id}>{item.name}</option>
+                            )}
+                        </select>
+                    </div>
+                    <div>
+
+                        <select
+                            name='sizes'
+                            value={sizes}
+                            onChange={this.changeHandler}
+                            required
+                        >
+                            <option value=''>Select Size</option>
+                            {sizeData && sizeData.length > 0 && sizeData.map((item) =>
+                                <option key={item.id} value={item.id}>{item.name}</option>
+                            )}
+                        </select>
+                    </div>
+                    <div>
+
+                        <select
+                            name='tags'
+                            value={tags}
+                            onChange={this.changeHandler}
+                            required
+                        >
+                            <option value=''>Select Tag</option>
+                            {tagData && tagData.length > 0 && tagData.map((item) =>
+                                <option key={item.id} value={item.id}>{item.name}</option>
+                            )}
+                        </select>
+                    </div>
+                    <div>
+                        <textarea
+                            type='text'
+                            name='description'
+                            value={description}
+                            placeholder='Enter description'
+                            onChange={this.changeHandler}
+                            required
+                        />
+                    </div>
                     <Button type='submit'>Update</Button>
                 </FormGroup>
             </Form>

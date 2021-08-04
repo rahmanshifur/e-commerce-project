@@ -1,9 +1,10 @@
 import { action } from "easy-peasy";
 import shortid from "shortid";
+import { getLocalData, setLocalData } from "../../util/helper";
 
 
 const ReviewModel = {
-    data: [],
+    data: getLocalData('review'),
     editItem: {},
     create: action((state, payload) => {
         let obj = {
@@ -15,6 +16,8 @@ const ReviewModel = {
             date: new Date().toLocaleDateString()
         }
         state.data.push(obj)
+        setLocalData('review', state.data)
+
     }),
     edit: action((state, payload) => {
         state.editItem = state.data.filter(item => item.id === payload)[0]
@@ -29,11 +32,14 @@ const ReviewModel = {
         })
         state.editItem = {}
         state.data = arr
+        setLocalData('review', state.data)
+
     }),
     remove: action((state, payload) => {
         let arr = state.data.filter(item => item.id !== payload)
         state.data = arr
         state.editItem = {}
+        setLocalData('review', state.data)
 
     })
 

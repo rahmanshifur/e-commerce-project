@@ -37,7 +37,7 @@ export default ({ editItem }) => {
                     placeholder='Enter name'
                     required
                 >
-                    <option value='0'>Select Category</option>
+                    <option value=''>Select Category</option>
                     {data && data.length > 0 && data.map((item) =>
                         <option key={item.id} value={item.id}>{item.name}</option>)}
 
