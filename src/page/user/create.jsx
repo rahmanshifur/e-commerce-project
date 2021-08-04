@@ -23,6 +23,7 @@ class Create extends Component {
         let { name, email, password, confirmPassword, address, contact } = this.state
         if (password !== confirmPassword) {
             alert(`ConfirmPassword doesn't match`)
+            return
         }
 
         let arr = { name, email, password, address, contact }

@@ -16,7 +16,8 @@ export default () => {
                 <tr>
                     <th>#</th>
                     <th>ID</th>
-                    <th>Name</th>
+                    <th>Star</th>
+                    <th>Comment</th>
                     <th>User</th>
                     <th>Product</th>
                     <th>Action</th>
@@ -28,9 +29,10 @@ export default () => {
                     <tr key={item.id}>
                         <td>{++i}</td>
                         <td>{item.id}</td>
-                        <td>{item.name}</td>
+                        <td>{item.star}</td>
+                        <td>{item.comment}</td>
                         <td>{userData.map(usr => usr.id === item.user_id && <>{usr.name}</>)}</td>
-                        <td>{productData.map(pdt => pdt.id === item.product_id && <>{pdt.name}</>)}</td>
+                        <td>{productData.map(pdt => pdt.id === item.product_id && <>{pdt.title}</>)}</td>
                         <td>
                             <Button onClick={() => edit(item.id)}>Edit</Button>
                             <Button onClick={() => remove(item.id)} className='btn-danger'>Delete</Button>

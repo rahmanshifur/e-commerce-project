@@ -8,6 +8,7 @@ const ProductModel = {
     create: action((state, payload) => {
         let obj = {
             id: shortid.generate(),
+            category_id: payload.category_id,
             subcategory_id: payload.subcategory_id,
             title: payload.title,
             price: payload.price,

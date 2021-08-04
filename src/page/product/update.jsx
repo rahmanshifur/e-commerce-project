@@ -4,6 +4,7 @@ import store from '../../store'
 
 class Update extends Component {
     state = {
+        category_id: '',
         subcategory_id: '',
         title: '',
         price: '',
@@ -17,10 +18,10 @@ class Update extends Component {
     }
 
     componentDidMount = e => {
-        let { subcategory_id, title, price, vat, discount, description, colors, sizes, tags } = this.props.editItem
+        let { category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags } = this.props.editItem
 
         this.setState({
-            subcategory_id, title, price, vat, discount, description, colors, sizes, tags
+            category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags
         })
     }
 
@@ -34,12 +35,13 @@ class Update extends Component {
 
     submitHandler = e => {
         e.preventDefault()
-        let { subcategory_id, title, price, vat, discount, description, colors, sizes, tags } = this.state
+        let { category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags } = this.state
 
-        let arr = { subcategory_id, title, price, vat, discount, description, colors, sizes, tags, id: this.props.editItem.id }
+        let arr = { category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags, id: this.props.editItem.id }
         store.getActions().product.update(arr)
 
         this.setState({
+            category_id: '',
             subcategory_id: '',
             title: '',
             price: '',
@@ -53,12 +55,14 @@ class Update extends Component {
         alert('Product Update successfully')
     }
     render() {
-        let { subcategory_id, title, price, vat, discount, description, colors, sizes, tags } = this.state
+        let { category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags } = this.state
 
         const colorData = store.getState().color.data
         const sizeData = store.getState().size.data
         const tagData = store.getState().tag.data
         const subcategoryData = store.getState().subcategory.data
+        const categoryData = store.getState().category.data
+
 
         return (
             <Form onSubmit={this.submitHandler}>
@@ -68,14 +72,6 @@ class Update extends Component {
                         name='title'
                         value={title}
                         placeholder='Enter title'
-                        onChange={this.changeHandler}
-                        required
-                    />
-                    <textarea
-                        type='text'
-                        name='description'
-                        value={description}
-                        placeholder='Enter description'
                         onChange={this.changeHandler}
                         required
                     />
@@ -103,6 +99,28 @@ class Update extends Component {
                         onChange={this.changeHandler}
                         required
                     />
+                    <select
+                        name='category_id'
+                        value={category_id}
+                        onChange={this.changeHandler}
+                        required
+                    >
+                        <option value='0'>Select Category</option>
+                        {categoryData && categoryData.length > 0 && categoryData.map((item) =>
+                            <option key={item.id} value={item.id}>{item.name}</option>
+                        )}
+                    </select>
+                    <select
+                        name='subcategory_id'
+                        value={subcategory_id}
+                        onChange={this.changeHandler}
+                        required
+                    >
+                        <option value='0'>Select Subcategory</option>
+                        {subcategoryData && subcategoryData.length > 0 && subcategoryData.map((item) => item.category === category_id &&
+                            < option key={item.id} value={item.id} > {item.name}</option>
+                        )}
+                    </select>
                     <select
                         name='colors'
                         value={colors}
@@ -136,17 +154,14 @@ class Update extends Component {
                             <option key={item.id} value={item.id}>{item.name}</option>
                         )}
                     </select>
-                    <select
-                        name='subcategory_id'
-                        value={subcategory_id}
+                    <textarea
+                        type='text'
+                        name='description'
+                        value={description}
+                        placeholder='Enter description'
                         onChange={this.changeHandler}
                         required
-                    >
-                        <option value='0'>Select Subcategory</option>
-                        {subcategoryData && subcategoryData.length > 0 && subcategoryData.map((item) =>
-                            <option key={item.id} value={item.id}>{item.name}</option>
-                        )}
-                    </select>
+                    />
                     <Button type='submit'>Update</Button>
                 </FormGroup>
             </Form>

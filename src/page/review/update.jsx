@@ -1,11 +1,10 @@
-import { useStoreActions, useStoreState } from "easy-peasy"
 import { useState } from "react"
+import { useStoreActions, useStoreState } from "easy-peasy"
 import { Button, Form, FormGroup, Input } from "reactstrap"
 
 
 export default ({ editItem }) => {
 
-    const [name, setName] = useState(editItem.name)
     const [star, setStar] = useState(editItem.star)
     const [comment, setComment] = useState(editItem.comment)
     const [product_id, setProduct_id] = useState(editItem.product_id)
@@ -19,14 +18,12 @@ export default ({ editItem }) => {
         e.preventDefault()
 
         update({
-            name: name,
             product_id: product_id,
             user_id: user_id,
             comment: comment,
             star: star
         })
 
-        setName('')
         setComment('')
         setStar('')
         setProduct_id('')
@@ -34,24 +31,26 @@ export default ({ editItem }) => {
     }
     return (
         <Form onSubmit={submitHandler} >
-            <FormGroup className='d-flex'>
-                <Input
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder='Enter name'
-                    required
-                />
-                <Input
-                    value={comment}
-                    onChange={(e) => setComment(e.target.value)}
-                    placeholder='Provide comment'
-                    required
-                />
-                <Input
-                    type='number'
+            <FormGroup className=''>
+
+                <select
                     value={star}
                     onChange={(e) => setStar(e.target.value)}
                     placeholder='Enter number'
+                    required
+                >
+                    <option value='0'>Select Star</option>
+                    <option value='1'>1*</option>
+                    <option value='2'>2*</option>
+                    <option value='2'>3*</option>
+                    <option value='2'>4*</option>
+                    <option value='2'>5*</option>
+
+                </select>
+                <textarea
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    placeholder='description'
                     required
                 />
                 <select
