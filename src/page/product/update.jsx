@@ -35,13 +35,12 @@ class Update extends Component {
 
     submitHandler = e => {
         e.preventDefault()
-        let { category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags } = this.state
+        let { subcategory_id, title, price, vat, discount, description, colors, sizes, tags } = this.state
 
-        let arr = { category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags, id: this.props.editItem.id }
+        let arr = { subcategory_id, title, price, vat, discount, description, colors, sizes, tags, id: this.props.editItem.id }
         store.getActions().product.update(arr)
 
         this.setState({
-            category_id: '',
             subcategory_id: '',
             title: '',
             price: '',

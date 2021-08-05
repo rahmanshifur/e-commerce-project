@@ -27,13 +27,12 @@ class Create extends Component {
 
     submitHandler = e => {
         e.preventDefault()
-        let { category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags } = this.state
+        let { subcategory_id, title, price, vat, discount, description, colors, sizes, tags } = this.state
 
-        let arr = { category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags }
+        let arr = { subcategory_id, title, price, vat, discount, description, colors, sizes, tags }
         store.getActions().product.create(arr)
 
         this.setState({
-            category_id: '',
             subcategory_id: '',
             title: '',
             price: '',
