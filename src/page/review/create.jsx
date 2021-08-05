@@ -39,7 +39,7 @@ export default () => {
                     placeholder='Enter number'
                     required
                 >
-                    <option value='0'>Select Star</option>
+                    <option value=''>Select Star</option>
                     <option value='1'>1*</option>
                     <option value='2'>2*</option>
                     <option value='2'>3*</option>
@@ -58,7 +58,7 @@ export default () => {
                     onChange={(e) => setUser_id(e.target.value)}
                     required
                 >
-                    <option value='0'>Select user</option>
+                    <option value=''>Select user</option>
                     {userData && userData.length > 0 && userData.map((item) =>
                         <option key={item.id} value={item.id}>{item.name}</option>)}
                 </select>
@@ -67,7 +67,7 @@ export default () => {
                     onChange={(e) => setProduct_id(e.target.value)}
                     required
                 >
-                    <option value='0'>Select Product</option>
+                    <option value=''>Select Product</option>
                     {productData && productData.length > 0 && productData.map((item) =>
                         <option key={item.id} value={item.id}>{item.title}</option>)}
                 </select>
