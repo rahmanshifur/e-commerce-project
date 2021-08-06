@@ -21,8 +21,6 @@ import Review from "../page/review"
 import ScatProduct from "../page/scat-product"
 
 
-
-
 export default () => {
     return (
         <Layout>

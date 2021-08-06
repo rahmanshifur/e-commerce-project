@@ -39,12 +39,11 @@ export default ({ editItem }) => {
                     placeholder='Enter number'
                     required
                 >
-                    <option value=''>Select Star</option>
-                    <option value='1'>1*</option>
-                    <option value='2'>2*</option>
-                    <option value='2'>3*</option>
-                    <option value='2'>4*</option>
-                    <option value='2'>5*</option>
+                    <option value='1'>1 Star</option>
+                    <option value='2'>2 Star</option>
+                    <option value='2'>3 Star</option>
+                    <option value='2'>4 Star</option>
+                    <option value='2'>5 Star</option>
 
                 </select>
                 <textarea
