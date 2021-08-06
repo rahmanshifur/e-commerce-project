@@ -18,12 +18,14 @@ import Subcategory from "../page/subcategory"
 import Product from "../page/product"
 import User from "../page/user"
 import Review from "../page/review"
+import ScatProduct from "../page/scat-product"
 
 
 export default () => {
     return (
         <Layout>
             <Router>
+                <ScatProduct path='/scat-product/:scatId' />
                 <FAQ path='/faq' />
                 <Contact path='/contact' />
                 <About path='/about' />

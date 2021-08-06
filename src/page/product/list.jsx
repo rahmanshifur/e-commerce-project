@@ -6,6 +6,7 @@ export default () => {
     const list = useStoreState(state => state.product.data)
     const { remove, edit } = useStoreActions(action => action.product)
 
+    const catData = useStoreState(state => state.category.data)
     const subcategoryData = useStoreState(state => state.subcategory.data)
     const colorData = useStoreState(state => state.color.data)
     const sizeData = useStoreState(state => state.size.data)
@@ -19,6 +20,7 @@ export default () => {
                 <tr>
                     <th>#</th>
                     <th>ID</th>
+                    <th>Category Name</th>
                     <th>Subcategory Name</th>
                     <th>Title</th>
                     <th>Description</th>
@@ -37,6 +39,7 @@ export default () => {
                     <tr key={item.id}>
                         <td>{++i}</td>
                         <td>{item.id}</td>
+                        <td>{subcategoryData.map(scat => scat.id === item.subcategory_id && catData.map(cat => cat.id === scat.category && <span key={cat.id}>{cat.name}</span>))}</td>
                         <td>{subcategoryData.map(sctg => sctg.id === item.subcategory_id && <>{sctg.name}</>)}</td>
                         <td>{item.title}</td>
                         <td>{item.description}</td>
