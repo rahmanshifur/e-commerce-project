@@ -19,12 +19,16 @@ import Product from "../page/product"
 import User from "../page/user"
 import Review from "../page/review"
 import ScatProduct from "../page/scat-product"
+import ProductDetails from "../page/product-details"
+import AllProduct from "../page/all-product"
 
 
 export default () => {
     return (
         <Layout>
             <Router>
+                <AllProduct path='/all-product' />
+                <ProductDetails path='/product-details/:pdtId' />
                 <ScatProduct path='/scat-product/:scatId' />
                 <FAQ path='/faq' />
                 <Contact path='/contact' />
