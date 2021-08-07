@@ -1,4 +1,4 @@
-import { createStore, action } from "easy-peasy";
+import { createStore } from "easy-peasy";
 
 // IMPORT MODELS
 import CategoryModel from './models/category';
@@ -9,8 +9,11 @@ import SizeModel from './models/size';
 import TagModel from './models/tag';
 import UserModel from './models/user';
 import ReviewModel from './models/review';
+import CartModel from "./models/cart";
+
 
 const store = createStore({
+    cart: CartModel,
     category: CategoryModel,
     subcategory: SubCategoryModel,
     product: ProductModel,
