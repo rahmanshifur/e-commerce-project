@@ -19,10 +19,9 @@ import Product from "../page/product"
 import User from "../page/user"
 import Review from "../page/review"
 import ScatProduct from "../page/scat-product"
-import ProductDetail from "../page/product-details"
-import AllProduct from "../page/all-proudct"
 
-
+import ProductDetails from "../page/product-details"
+import AllProduct from "../page/all-product"
 
 
 export default () => {
@@ -30,7 +29,7 @@ export default () => {
         <Layout>
             <Router>
                 <AllProduct path='/all-product' />
-                <ProductDetail path='/product-details/:pdtId' />
+                <ProductDetails path='/product-details/:pdtId' />
                 <ScatProduct path='/scat-product/:scatId' />
                 <FAQ path='/faq' />
                 <Contact path='/contact' />
@@ -46,6 +45,6 @@ export default () => {
                 <Home path='/' />
                 <PageNotFound default />
             </Router>
-        </Layout>
+        </Layout >
     )
 }

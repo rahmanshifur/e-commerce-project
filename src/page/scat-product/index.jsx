@@ -1,12 +1,9 @@
 
 import { useStoreState } from 'easy-peasy';
-import { Col, Container, Row, Card, CardBody, CardImg, CardTitle, CardSubtitle, Button, CardText } from "reactstrap";
+import { Col, Container, Row, Card, CardBody, CardImg, CardText, CardTitle, CardSubtitle } from "reactstrap";
 import Sidebar from './../../components/layout/sidebar';
-import pdtImg from '../../assets/img/download.jpg'
+import pdtImg from '../../assets/img/mac-mini.jpg'
 import { Link } from '@reach/router';
-
-
-
 
 function ScatProduct(props) {
     const catData = useStoreState(state => state.category.data)
@@ -32,14 +29,15 @@ function ScatProduct(props) {
                             <h2>List of product in this subcategory</h2>
                             {pdtData.length > 0 && pdtData.map(pdt => pdt.subcategory_id === props.scatId &&
                                 <Card key={pdt.id} style={{ maxWidth: 250 }}>
-                                    <CardImg top width="100%" src={pdtImg} alt="Card image cap" />
+
+                                    <CardImg src={pdtImg} alt="Card image cap" />
                                     <CardBody>
                                         <CardTitle tag="h5">{pdt.title}</CardTitle>
-                                        <CardSubtitle tag="h6" className="mb-2 text-muted">Price: {pdt.price}</CardSubtitle>
-                                        <CardSubtitle tag="h6" className="mb-2 text-muted">Vat: {pdt.vat}</CardSubtitle>
-                                        <CardSubtitle tag="h6" className="mb-2 text-muted">Discount: {pdt.discount}</CardSubtitle>
+                                        <CardSubtitle tag="h6" className="mb-2 text-muted"> Price :{pdt.price}</CardSubtitle>
+                                        <CardSubtitle tag="h6" className="mb-2 text-muted"> Vat :{pdt.vat}</CardSubtitle>
+                                        <CardSubtitle tag="h6" className="mb-2 text-muted"> Discount :{pdt.discount}</CardSubtitle>
                                         <CardText>{pdt.description}</CardText>
-                                        <Link to={`/product-details/${pdt.id}`}>Details</Link>
+                                        <Link to={`/product-details/${pdt.id}`}>Details </Link>
                                     </CardBody>
                                 </Card>
                             )}

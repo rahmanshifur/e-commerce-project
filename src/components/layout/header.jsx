@@ -14,7 +14,7 @@ export default () => {
                     <NavItem><Link to='/about' className='nav-link'>About</Link></NavItem>
                     <NavItem><Link to='/contact' className='nav-link'>Contact</Link></NavItem>
                     <NavItem><Link to='/faq' className='nav-link'>FAQ</Link></NavItem>
-                    <NavItem><Link to='/all-product' className='nav-link'>All Product</Link></NavItem>
+                    <NavItem><Link to='/all-product' className='nav-link'>All-Product</Link></NavItem>
                     <UncontrolledDropdown nav inNavbar>
                         <DropdownToggle nav caret > DashBoard</DropdownToggle>
                         <DropdownMenu right >
