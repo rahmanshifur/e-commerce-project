@@ -48,4 +48,4 @@ function ProductDetails(props) {
         </section>
     )
 }
-export default ProductDetail
+export default ProductDetails
