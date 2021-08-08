@@ -24,7 +24,7 @@ function AllProduct() {
                                     <CardSubtitle tag="h6" className="mb-2 text-muted"> Vat :{pdt.vat}</CardSubtitle>
                                     <CardSubtitle tag="h6" className="mb-2 text-muted"> Discount :{pdt.discount}</CardSubtitle>
                                     <CardText>{pdt.description}</CardText>
-                                    <Link to={`/product-details/${1}`}>Details </Link>
+                                    <Link to={`/product-details/${pdt.id}`} className='btn btn-primary'>Details </Link>
                                 </CardBody>
                             </Card>
 

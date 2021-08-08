@@ -15,6 +15,7 @@ export default () => {
                     <NavItem><Link to='/contact' className='nav-link'>Contact</Link></NavItem>
                     <NavItem><Link to='/faq' className='nav-link'>FAQ</Link></NavItem>
                     <NavItem><Link to='/all-product' className='nav-link'>All-Product</Link></NavItem>
+                    <NavItem><Link to='/checkout' className='nav-link'>Check-Out</Link></NavItem>
                     <UncontrolledDropdown nav inNavbar>
                         <DropdownToggle nav caret > DashBoard</DropdownToggle>
                         <DropdownMenu right >

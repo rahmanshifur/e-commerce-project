@@ -1,9 +1,14 @@
-import { Col, Container, Row, CardTitle, CardSubtitle, CardText, CardBody } from "reactstrap";
+import { useState } from 'react';
+import { useStoreState, useStoreActions } from 'easy-peasy';
+import { Col, Container, Row, CardTitle, CardSubtitle, CardText, CardBody, CardImg, Button, Input } from "reactstrap";
 import Sidebar from "../../components/layout/sidebar";
-import { useStoreState } from 'easy-peasy';
+import pdtImg from '../../assets/img/mac-mini.jpg'
+
 
 
 function ProductDetails(props) {
+    const [quantity, setQuantity] = useState(1)
+
     const pdtData = useStoreState(state => state.product.data)
     const selPdt = pdtData.filter(item => item.id === props.pdtId)[0]
 
@@ -11,7 +16,45 @@ function ProductDetails(props) {
     const sizData = useStoreState(state => state.size.data)
     const tagData = useStoreState(state => state.tag.data)
 
-    console.log(selPdt)
+
+
+    const cartData = useStoreState(state => state.cart.data)
+    const addToCart = useStoreActions(action => action.cart.create)
+    const updateQuantity = useStoreActions(action => action.cart.update)
+
+
+    const addToCartHandler = (item) => {
+        if (quantity < 1 || quantity > 50) {
+            alert('Please provide a valid quantity!')
+            return;
+        }
+
+
+
+        // IF NO HAVE ANY PRODUCT
+        if (cartData.length === 0) {
+            item.quantity = quantity
+            addToCart(item)
+            alert('Product add to cart!')
+            return;
+        }
+
+        // CHECK ALREADY HAVE THIS PRODUCT OR NOT 
+        let checkPdt = cartData.filter(pdt => pdt.id === item.id)
+
+        // IF ALREADY NOT ADD THIS PRODUCT
+        if (checkPdt.length === 0) {
+            item.quantity = quantity
+            addToCart(item)
+            alert('Product add to cart!')
+            return;
+        }
+
+        // IF ALREADY ADD THIS PRODUCT
+        updateQuantity({ id: item.id, quantity })
+        alert('Quantity has been updated successfully!')
+    }
+
     return (
         <section>
             <Container>
@@ -22,7 +65,9 @@ function ProductDetails(props) {
                     <Col sm={9}>
                         <CardBody>
                             <Row>
-                                <Col md={6}><h2>Image</h2></Col>
+                                <Col md={6}>
+                                    <CardImg src={pdtImg} alt='product' />
+                                </Col>
                                 <Col md={6}>
                                     <CardTitle tag="h5">{selPdt.title}</CardTitle>
                                     <CardSubtitle tag="h6" className="mb-2 text-muted"> Price :{selPdt.price}</CardSubtitle>
@@ -39,6 +84,12 @@ function ProductDetails(props) {
                                     }</CardSubtitle>
                                     <hr />
                                     <CardText>{selPdt.description}</CardText>
+                                    <Input
+                                        type='number'
+                                        value={quantity}
+                                        onChange={(e) => setQuantity(e.target.value,)}
+                                    />
+                                    <Button onClick={() => addToCartHandler(selPdt)}>Add Too Cart</Button>
                                 </Col>
                             </Row>
                         </CardBody>

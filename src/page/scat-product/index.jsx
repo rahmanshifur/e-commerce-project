@@ -34,22 +34,9 @@ function ScatProduct(props) {
                                         <CardSubtitle tag="h6" className="mb-2 text-muted"> Vat :{pdt.vat}</CardSubtitle>
                                         <CardSubtitle tag="h6" className="mb-2 text-muted"> Discount :{pdt.discount}</CardSubtitle>
                                         <CardText>{pdt.description}</CardText>
-                                        <Link to={`/product-details/${pdt.id}`}>Details </Link>
+                                        <Link to={`/product-details/${pdt.id}`} className='btn btn-primary'>Details </Link>
                                     </CardBody>
                                 </Card>
-                                // <h3>{pdt.title}</h3>
-                                // <h4>{pdt.price}</h4>
-                                // <h4>{pdt.vat}</h4>
-                                // <h4>{pdt.discount}</h4>
-
-                                // {/* color show */}
-                                // {clrData.length > 0 && clrData.map(clr => clr.id === pdt.colors && <h4 key={clr.id}>{clr.name}</h4>)}
-
-                                // {/* size show */}
-                                // {sizData.length > 0 && sizData.map(siz => siz.id === pdt.sizes && <h4 key={siz.id}>{siz.name}</h4>)}
-
-                                // {/* tag show */}
-                                // {tagData.length > 0 && tagData.map(tag => tag.id === pdt.tags && <h4 key={tag.id}>{tag.name}</h4>)}
                             )}
 
 
