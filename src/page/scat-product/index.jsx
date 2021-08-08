@@ -1,3 +1,4 @@
+
 import { useStoreState } from 'easy-peasy';
 import { Col, Container, Row, Card, CardBody, CardImg, CardText, CardTitle, CardSubtitle } from "reactstrap";
 import Sidebar from './../../components/layout/sidebar';
@@ -11,6 +12,7 @@ function ScatProduct(props) {
     const clrData = useStoreState(state => state.color.data)
     const sizData = useStoreState(state => state.size.data)
     const tagData = useStoreState(state => state.tag.data)
+
     return (
         <section id="scat-product">
             <Container>
@@ -27,6 +29,7 @@ function ScatProduct(props) {
                             <h2>List of product in this subcategory</h2>
                             {pdtData.length > 0 && pdtData.map(pdt => pdt.subcategory_id === props.scatId &&
                                 <Card key={pdt.id} style={{ maxWidth: 250 }}>
+
                                     <CardImg src={pdtImg} alt="Card image cap" />
                                     <CardBody>
                                         <CardTitle tag="h5">{pdt.title}</CardTitle>
@@ -38,8 +41,6 @@ function ScatProduct(props) {
                                     </CardBody>
                                 </Card>
                             )}
-
-
                         </div>
                     </Col>
                 </Row>

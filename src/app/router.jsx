@@ -19,6 +19,7 @@ import Product from "../page/product"
 import User from "../page/user"
 import Review from "../page/review"
 import ScatProduct from "../page/scat-product"
+
 import ProductDetails from "../page/product-details"
 import AllProduct from "../page/all-product"
 import CheckOut from "../page/checkout"
@@ -46,6 +47,6 @@ export default () => {
                 <Home path='/' />
                 <PageNotFound default />
             </Router>
-        </Layout>
+        </Layout >
     )
 }

@@ -6,6 +6,7 @@ import pdtImg from '../../assets/img/mac-mini.jpg'
 
 
 
+
 function ProductDetails(props) {
     const [quantity, setQuantity] = useState(1)
 
@@ -15,7 +16,6 @@ function ProductDetails(props) {
     const clrData = useStoreState(state => state.color.data)
     const sizData = useStoreState(state => state.size.data)
     const tagData = useStoreState(state => state.tag.data)
-
 
 
     const cartData = useStoreState(state => state.cart.data)
@@ -99,5 +99,4 @@ function ProductDetails(props) {
         </section>
     )
 }
-
 export default ProductDetails

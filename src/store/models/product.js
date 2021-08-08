@@ -44,8 +44,6 @@ const ProductModel = {
         state.data = arr
         state.editItem = {}
         setLocalData('product', state.data)
-
-
     })
 
 }
