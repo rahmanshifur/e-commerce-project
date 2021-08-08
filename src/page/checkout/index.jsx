@@ -16,6 +16,7 @@ function CheckOut() {
             return;
         }
         updateQuantity({ id: pdtId, quantity })
+        alert('Update has been successfully')
     }
 
     const totalCal = () => {
@@ -45,8 +46,8 @@ function CheckOut() {
                                 <th>Price</th>
                                 <th>Vat</th>
                                 <th>Discount</th>
-                                <th>Quantity</th>
                                 <th>Total-Price</th>
+                                <th>Quantity</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -59,7 +60,6 @@ function CheckOut() {
                                     <td>BDT{item.price}</td>
                                     <td>{item.vat}%</td>
                                     <td>{item.discount}%</td>
-                                    <td>{item.quantity}</td>
                                     <td>BDT{item.quantity * item.price}</td>
 
                                     <td>
@@ -77,7 +77,7 @@ function CheckOut() {
                             )}
 
                             {cartData && cartData.length && <tr>
-                                <td colSpan={9}> Ground-Total</td>
+                                <td colSpan={8}> Ground-Total</td>
                                 <td>BDT{totalCal()}</td>
                             </tr>}
                         </tbody>
