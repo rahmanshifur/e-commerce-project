@@ -23,12 +23,16 @@ import ScatProduct from "../page/scat-product"
 import ProductDetails from "../page/product-details"
 import AllProduct from "../page/all-product"
 import CheckOut from "../page/checkout"
+import Payment from "../page/payment"
+import Login from './../page/login/index';
 
 
 export default () => {
     return (
         <Layout>
             <Router>
+                <Login path='/login' />
+                <Payment path='/payment' />
                 <CheckOut path='/checkout' />
                 <AllProduct path='/all-product' />
                 <ProductDetails path='/product-details/:pdtId' />

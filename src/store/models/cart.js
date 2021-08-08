@@ -25,9 +25,11 @@ const CartModel = {
         let arr = state.data.filter(item => item.id !== payload)
         state.data = arr
         setLocalData('cart', state.data)
-
-    })
-
+    }),
+    emptyCart: action((state) => {
+        state.data = []
+        setLocalData('cart', state.data)
+    }),
 }
 
 export default CartModel

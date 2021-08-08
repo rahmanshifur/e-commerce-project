@@ -10,8 +10,12 @@ import TagModel from './models/tag';
 import UserModel from './models/user';
 import ReviewModel from './models/review';
 import CartModel from './models/cart';
+import OrderModel from "./models/order";
+import AuthModel from "./models/auth";
 
 const store = createStore({
+    auth: AuthModel,
+    order: OrderModel,
     cart: CartModel,
     category: CategoryModel,
     subcategory: SubCategoryModel,

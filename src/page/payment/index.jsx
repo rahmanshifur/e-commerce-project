@@ -1,24 +1,15 @@
 import { useStoreState, useStoreActions } from 'easy-peasy';
 import { Container, Row, Col, Table, Input, Button } from "reactstrap"
 import Sidebar from './../../components/layout/sidebar';
-import { Link } from '@reach/router';
+import { navigate } from '@reach/router';
 
 
-function CheckOut() {
-
+function Payment() {
     const cartData = useStoreState(state => state.cart.data)
+    const auth = useStoreState(state => state.auth.data)
 
-    const updateQuantity = useStoreActions(action => action.cart.update)
-    const cartRemove = useStoreActions(action => action.cart.remove)
-
-    const quantityHandler = (quantity, pdtId) => {
-        if (quantity < 1 || quantity > 50) {
-            alert('Please provide valid quantity!')
-            return;
-        }
-        updateQuantity({ id: pdtId, quantity })
-        alert('Update has been successfully')
-    }
+    const createOrder = useStoreActions(action => action.order.create)
+    const emptyCart = useStoreActions(action => action.cart.emptyCart)
 
     const totalCal = () => {
         let total = 0;
@@ -30,6 +21,22 @@ function CheckOut() {
         return total
     }
 
+    const orderHandler = () => {
+        if (auth.length === 0) {
+            navigate('/login')
+            return
+        }
+
+
+        let obj = {
+            pdtItem: cartData,
+            status: 'ORDER',
+            userId: auth[0].id
+        }
+        createOrder(obj)
+        emptyCart()
+        alert('Order has been submitted successfully!')
+    }
 
     return (
         <Container>
@@ -49,7 +56,6 @@ function CheckOut() {
                                 <th>Discount</th>
                                 <th>Total-Price</th>
                                 <th>Quantity</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -62,33 +68,22 @@ function CheckOut() {
                                     <td>{item.vat}%</td>
                                     <td>{item.discount}%</td>
                                     <td>BDT{item.quantity * item.price}</td>
-
-                                    <td>
-                                        <Input
-                                            type='number'
-                                            value={item.quantity}
-                                            onChange={(e) => quantityHandler(e.target.value, item.id)}
-                                            style={{ width: 70 }}
-                                        />
-                                    </td>
-                                    <td>
-                                        <Button onClick={() => cartRemove(item.id)} color="danger">Remove</Button>
-                                    </td>
+                                    <td>{item.quantity}</td>
                                 </tr>
                             )}
 
                             {cartData && cartData.length && <tr>
-                                <td colSpan={8}> Ground-Total</td>
+                                <td colSpan={7}> Ground-Total</td>
                                 <td>BDT{totalCal()}</td>
                             </tr>}
                         </tbody>
                     </Table>
 
-                    <Link to='/payment' className='btn btn-primary float-right'>Pay Now</Link>
+                    <Button onClick={() => orderHandler()} className='float-right'>Submit Order</Button>
                 </Col>
             </Row>
         </Container>
     )
 }
 
-export default CheckOut
+export default Payment
