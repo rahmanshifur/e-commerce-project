@@ -87,7 +87,7 @@ function ProductDetails(props) {
                                     <Input
                                         type='number'
                                         value={quantity}
-                                        onChange={(e) => setQuantity(e.target.value,)}
+                                        onChange={(e) => setQuantity(e.target.value)}
                                     />
                                     <Button onClick={() => addToCartHandler(selPdt)}>Add Too Cart</Button>
                                 </Col>
