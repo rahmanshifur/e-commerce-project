@@ -25,12 +25,14 @@ import AllProduct from "../page/all-product"
 import CheckOut from "../page/checkout"
 import Payment from "../page/payment"
 import Login from './../page/login/index';
+import MyOrder from "../page/order/my-order"
 
 
 export default () => {
     return (
         <Layout>
             <Router>
+                <MyOrder path='/my-order' />
                 <Login path='/login' />
                 <Payment path='/payment' />
                 <CheckOut path='/checkout' />

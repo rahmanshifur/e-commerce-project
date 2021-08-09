@@ -1,5 +1,8 @@
 import { action } from "easy-peasy";
 import { setLocalData, getLocalData } from "../../util/helper";
+import { navigate } from '@reach/router';
+
+
 
 const AuthModel = {
     data: getLocalData('auth'),
@@ -13,9 +16,13 @@ const AuthModel = {
 
         state.data = authUser
         setLocalData('auth', state.data)
+
+        navigate(-1)
     }),
     logout: action((state) => {
         state.data = []
+        setLocalData('auth', state.data)
+        navigate('/')
     })
 }
 export default AuthModel

@@ -1,5 +1,5 @@
 import { useStoreState, useStoreActions } from 'easy-peasy';
-import { Container, Row, Col, Table, Input, Button } from "reactstrap"
+import { Container, Row, Col, Table, Button } from "reactstrap"
 import Sidebar from './../../components/layout/sidebar';
 import { navigate } from '@reach/router';
 
@@ -79,7 +79,8 @@ function Payment() {
                         </tbody>
                     </Table>
 
-                    <Button onClick={() => orderHandler()} className='float-right'>Submit Order</Button>
+                    {cartData.length > 0 &&
+                        <Button onClick={() => orderHandler()} className='float-right'>Submit Order</Button>}
                 </Col>
             </Row>
         </Container>

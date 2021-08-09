@@ -84,7 +84,8 @@ function CheckOut() {
                         </tbody>
                     </Table>
 
-                    <Link to='/payment' className='btn btn-primary float-right'>Pay Now</Link>
+                    {cartData.length > 0 &&
+                        <Link to='/payment' className='btn btn-primary float-right'>Pay Now</Link>}
                 </Col>
             </Row>
         </Container>
