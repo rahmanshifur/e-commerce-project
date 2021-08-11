@@ -1,23 +1,26 @@
 import { Link } from '@reach/router'
+import { useStoreActions, useStoreState } from 'easy-peasy'
 import { useState } from 'react'
-import { Collapse, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, UncontrolledDropdown } from "reactstrap"
+import { Collapse, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, UncontrolledAlert, UncontrolledDropdown } from "reactstrap"
 
 export default () => {
     const [isOpen, setIsOpen] = useState(false)
     const toggle = () => setIsOpen(!isOpen)
+
+    const authData = useStoreState(state => state.auth.data)
+    const logoutHandler = useStoreActions(action => action.auth.logout)
+
     return (
         <Navbar color='dark' dark expand='md' className='my-5 p-2 '>
             <NavbarBrand href='/' className='ps-3 '>LOGO</NavbarBrand>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
                 <Nav className='ms-auto' navbar>
-                    <NavItem><Link to='/about' className='nav-link'>About</Link></NavItem>
-                    <NavItem><Link to='/contact' className='nav-link'>Contact</Link></NavItem>
-                    <NavItem><Link to='/faq' className='nav-link'>FAQ</Link></NavItem>
+
                     <NavItem><Link to='/all-product' className='nav-link'>All-Product</Link></NavItem>
                     <NavItem><Link to='/checkout' className='nav-link'>Check-Out</Link></NavItem>
                     <UncontrolledDropdown nav inNavbar>
-                        <DropdownToggle nav caret > DashBoard</DropdownToggle>
+                        <DropdownToggle nav caret > Admin Panel</DropdownToggle>
                         <DropdownMenu right >
                             <DropdownItem >
                                 <Link to='/category' className='nav-link text-dark'>Category</Link>
@@ -45,40 +48,21 @@ export default () => {
                             </DropdownItem>
                         </DropdownMenu>
                     </UncontrolledDropdown>
+
+                    {authData.length === 0 ?
+                        <NavItem><Link to='/login' className='nav-link'>Login</Link></NavItem> : <>
+                            <UncontrolledDropdown nav inNavbar>
+                                <DropdownToggle nav caret>{authData[0].name}</DropdownToggle>
+                                <DropdownMenu right>
+                                    <DropdownItem >
+                                        <Link to='/order' className='nav-link text-dark'>Order</Link>
+                                    </DropdownItem>
+                                </DropdownMenu>
+                            </UncontrolledDropdown>
+                            <NavItem><Link to='#blank' className='nav-link' onClick={() => logoutHandler()}>Logout</Link></NavItem>
+                        </>}
                 </Nav>
             </Collapse>
         </Navbar>
-
-        // <Navbar color="light" light expand="md" className='my-5 p-3'>
-        //     <NavbarBrand href="/">reactstrap</NavbarBrand>
-        //     <NavbarToggler onClick={toggle} />
-        //     <Collapse isOpen={isOpen} navbar>
-        //         <Nav className="ms-auto" navbar>
-        //             <NavItem>
-        //                 <NavLink href="/components/">Components</NavLink>
-        //             </NavItem>
-        //             <NavItem>
-        //                 <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-        //             </NavItem>
-        //             <UncontrolledDropdown nav inNavbar>
-        //                 <DropdownToggle nav caret>
-        //                     Options
-        //                 </DropdownToggle>
-        //                 <DropdownMenu right>
-        //                     <DropdownItem>
-        //                         Option 1
-        //                     </DropdownItem>
-        //                     <DropdownItem>
-        //                         Option 2
-        //                     </DropdownItem>
-        //                     <DropdownItem divider />
-        //                     <DropdownItem>
-        //                         Reset
-        //                     </DropdownItem>
-        //                 </DropdownMenu>
-        //             </UncontrolledDropdown>
-        //         </Nav>
-        //     </Collapse>
-        // </Navbar>
     )
 }
