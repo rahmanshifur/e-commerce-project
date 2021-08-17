@@ -14,12 +14,14 @@ const AuthModel = {
 
         state.data = authUser
         setLocalData('auth', state.data)
+
         navigate(-1)
     }),
     logout: action((state) => {
         state.data = []
         navigate('/home')
         setLocalData('auth', state.data)
+
 
     })
 }

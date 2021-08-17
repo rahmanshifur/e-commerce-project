@@ -3,13 +3,13 @@ import { useStoreActions, useStoreState } from 'easy-peasy'
 import { useState } from 'react'
 import { Collapse, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, UncontrolledAlert, UncontrolledDropdown } from "reactstrap"
 
+
 export default () => {
     const [isOpen, setIsOpen] = useState(false)
     const toggle = () => setIsOpen(!isOpen)
 
     const authData = useStoreState(state => state.auth.data)
     const logoutHandler = useStoreActions(action => action.auth.logout)
-
     return (
         <Navbar color='dark' dark expand='md' className='my-5 p-2 '>
             <NavbarBrand href='/' className='ps-3 '>LOGO</NavbarBrand>
@@ -19,6 +19,7 @@ export default () => {
 
                     <NavItem><Link to='/all-product' className='nav-link'>All-Product</Link></NavItem>
                     <NavItem><Link to='/checkout' className='nav-link'>Check-Out</Link></NavItem>
+
                     <UncontrolledDropdown nav inNavbar>
                         <DropdownToggle nav caret > Admin Panel</DropdownToggle>
                         <DropdownMenu right >
@@ -53,14 +54,18 @@ export default () => {
                         <NavItem><Link to='/login' className='nav-link'>Login</Link></NavItem> : <>
                             <UncontrolledDropdown nav inNavbar>
                                 <DropdownToggle nav caret>{authData[0].name}</DropdownToggle>
-                                <DropdownMenu right>
+                                <DropdownMenu right >
                                     <DropdownItem >
-                                        <Link to='/order' className='nav-link text-dark'>Order</Link>
+                                        <Link to='/my-order' className='nav-link text-dark'>My Order</Link>
                                     </DropdownItem>
                                 </DropdownMenu>
                             </UncontrolledDropdown>
+
                             <NavItem><Link to='#blank' className='nav-link' onClick={() => logoutHandler()}>Logout</Link></NavItem>
                         </>}
+
+
+
                 </Nav>
             </Collapse>
         </Navbar>

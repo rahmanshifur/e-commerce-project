@@ -1,8 +1,11 @@
-import { Modal, ModalBody, ModalHeader, Table } from "reactstrap"
+
+import { Modal, ModalHeader, ModalBody, Table } from "reactstrap"
+
+
 
 export default ({ toggle, pdtItem }) => {
     return (
-        <Modal isOpen={true} size='lg'>
+        <Modal isOpen={true} toggle={toggle} size='lg'>
             <ModalHeader toggle={toggle}>Order Items</ModalHeader>
             <ModalBody>
                 <Table>

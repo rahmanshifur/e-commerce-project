@@ -5,12 +5,12 @@ import OrderItems from './order-items'
 
 
 function MyOrder() {
-
     const [isOpen, setIsOpen] = useState(false)
     const [pdtItem, setPdtItem] = useState([])
 
     const orderData = useStoreState(state => state.order.data)
     const updateOrder = useStoreActions(action => action.order.update)
+
 
     const totalCal = (orderItem) => {
         let total = 0;

@@ -78,6 +78,7 @@ function Payment() {
                             </tr>}
                         </tbody>
                     </Table>
+
                     {cartData.length > 0 &&
                         <Button onClick={() => orderHandler()} className='float-right'>Submit Order</Button>}
                 </Col>
