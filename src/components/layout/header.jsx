@@ -17,6 +17,7 @@ export default () => {
             <Collapse isOpen={isOpen} navbar>
                 <Nav className='ms-auto' navbar>
 
+                    <NavItem><Link to='#' className='nav-link'>Cart</Link></NavItem>
                     <NavItem><Link to='/all-product' className='nav-link'>All-Product</Link></NavItem>
                     <NavItem><Link to='/checkout' className='nav-link'>Check-Out</Link></NavItem>
 
@@ -56,7 +57,7 @@ export default () => {
                                 <DropdownToggle nav caret>{authData[0].name}</DropdownToggle>
                                 <DropdownMenu right >
                                     <DropdownItem >
-                                        <Link to='/my-order' className='nav-link text-dark'>My Order</Link>
+                                        <Link to='/order' className='nav-link text-dark'>Order</Link>
                                     </DropdownItem>
                                 </DropdownMenu>
                             </UncontrolledDropdown>

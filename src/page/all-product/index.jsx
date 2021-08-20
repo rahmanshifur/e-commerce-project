@@ -1,4 +1,4 @@
-import { Col, Container, Row, Card, CardBody, CardImg, CardText, CardTitle, CardSubtitle } from "reactstrap";
+import { Col, Container, Row, Card, CardBody, CardImg, CardText, CardTitle, CardSubtitle, Button } from "reactstrap";
 import Sidebar from "../../components/layout/sidebar";
 import pdtImg from '../../assets/img/mac-mini.jpg'
 import { Link } from '@reach/router';
@@ -25,6 +25,7 @@ function AllProduct() {
                                     <CardSubtitle tag="h6" className="mb-2 text-muted"> Discount :{pdt.discount}</CardSubtitle>
                                     <CardText>{pdt.description}</CardText>
                                     <Link to={`/product-details/${pdt.id}`} className='btn btn-primary'>Details </Link>
+                                    <Button className='ms-auto'>Add to cart</Button>
                                 </CardBody>
                             </Card>
 
