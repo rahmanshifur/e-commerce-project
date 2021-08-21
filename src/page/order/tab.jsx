@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 import CancelOrder from './cancel-order';
 import MyOrder from './my-order';
+import AllOrder from './all-order';
+import CompleteOrder from './complete-order';
 
 const Tab = () => {
-    const [activeTab, setActiveTab] = useState('1');
+    const [activeTab, setActiveTab] = useState('');
 
     const toggle = tab => {
         if (activeTab !== tab) setActiveTab(tab);
@@ -18,7 +20,7 @@ const Tab = () => {
                         className={activeTab === '1' ? 'active' : ''}
                         onClick={() => { toggle('1'); }}
                     >
-                        Order
+                        All
                     </NavLink>
                 </NavItem>
                 <NavItem>
@@ -26,7 +28,7 @@ const Tab = () => {
                         className={activeTab === '2' ? 'active' : ''}
                         onClick={() => { toggle('2'); }}
                     >
-                        Cancel
+                        Order
                     </NavLink>
                 </NavItem>
                 <NavItem>
@@ -34,19 +36,41 @@ const Tab = () => {
                         className={activeTab === '3' ? 'active' : ''}
                         onClick={() => { toggle('3'); }}
                     >
+                        Cancel
+                    </NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink
+                        className={activeTab === '4' ? 'active' : ''}
+                        onClick={() => { toggle('4'); }}
+                    >
                         Processing
+                    </NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink
+                        className={activeTab === '5' ? 'active' : ''}
+                        onClick={() => { toggle('5'); }}
+                    >
+                        Complete
                     </NavLink>
                 </NavItem>
             </Nav>
             <TabContent activeTab={activeTab}>
                 <TabPane tabId="1">
-                    <MyOrder />
+                    <AllOrder />
                 </TabPane>
                 <TabPane tabId="2">
-                    <CancelOrder />
+                    <MyOrder />
                 </TabPane>
                 <TabPane tabId="3">
-                    tab2
+                    <CancelOrder />
+                </TabPane>
+                <TabPane tabId="4">
+                    Processing
+                </TabPane>
+                <TabPane tabId="5">
+                    <CompleteOrder />
                 </TabPane>
             </TabContent>
         </div>
