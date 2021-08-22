@@ -7,7 +7,7 @@ import CompleteOrder from './complete-order';
 import ProcessingOrder from './processing-order';
 
 const Tab = () => {
-    const [activeTab, setActiveTab] = useState('');
+    const [activeTab, setActiveTab] = useState('1');
 
     const toggle = tab => {
         if (activeTab !== tab) setActiveTab(tab);
