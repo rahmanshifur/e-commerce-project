@@ -25,7 +25,7 @@ export default () => {
                         <DropdownToggle nav caret > Admin Panel</DropdownToggle>
                         <DropdownMenu right >
                             <DropdownItem >
-                                <Link to='/order' className='nav-link text-dark'>Order</Link>
+                                <Link to='/admin-order' className='nav-link text-dark'>Order</Link>
                             </DropdownItem>
                             <DropdownItem >
                                 <Link to='/category' className='nav-link text-dark'>Category</Link>

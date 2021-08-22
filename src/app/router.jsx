@@ -27,12 +27,14 @@ import Payment from "../page/payment"
 import Login from './../page/login/index';
 import Order from "../page/order"
 import MyOrder from "../page/order/my-order"
+import AdminOrder from './../page/admin-order/index';
 
 
 export default () => {
     return (
         <Layout>
             <Router>
+                <AdminOrder path='/admin-order' />
                 <Order path='/order' />
                 <MyOrder path='/my-order' />
                 <Login path='/login' />

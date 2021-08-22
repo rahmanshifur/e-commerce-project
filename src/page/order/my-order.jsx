@@ -58,7 +58,7 @@ function MyOrder() {
                             <td>{item.status}</td>
                             <td>{item.createdAt}</td>
                             <td>
-                                <Button onClick={() => cancelHandler(item.orderId)} >Cancel</Button>
+                                <Button onClick={() => cancelHandler(item.orderId)} color='danger' >Cancel</Button>
                             </td>
                             <td>
                                 <Button onClick={() => modalHandler(item.pdtItem)} >View</Button>

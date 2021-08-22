@@ -7,7 +7,9 @@ export default () => {
             <Container>
                 <Row>
                     <Col sm={3}><Sidebar /></Col>
-                    <Col sm={9}> Hello World</Col>
+                    <Col sm={9}> <div className='hello'>
+                        <h1>Hello world</h1>
+                    </div></Col>
                 </Row>
             </Container>
         </section>

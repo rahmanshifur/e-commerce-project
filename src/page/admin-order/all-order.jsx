@@ -40,6 +40,13 @@ function AllOrder() {
         }
         updateOrder(obj)
     }
+    const processingHandler = (orderId) => {
+        let obj = {
+            orderId: orderId,
+            status: 'PROCESSING'
+        }
+        updateOrder(obj)
+    }
 
     return (
         <div>
@@ -66,10 +73,14 @@ function AllOrder() {
                             <td>{item.status}</td>
                             <td>{item.createdAt}</td>
                             <td className='d-flex'>
-                                {(item.status === 'ORDER' &&
+                                {(item.status === 'ORDER' || item.status === 'PROCESSING') &&
                                     <>
                                         <Button style={{ marginRight: '10px' }} color='danger' onClick={() => cancelHandler(item.orderId)} >Cancel</Button>
-                                    </>)}
+                                    </>}
+                                {item.status === 'ORDER' &&
+                                    <Button style={{ marginRight: '10px' }} color='warning' onClick={() => processingHandler(item.orderId)} >Processing</Button>}
+                                {item.status === 'PROCESSING' &&
+                                    <Button style={{ marginRight: '10px' }} onClick={() => completeHandler(item.orderId)} >Complete</Button>}
                                 <Button onClick={() => modalHandler(item.pdtItem)} >View</Button>
                             </td>
                         </tr>

@@ -13,7 +13,7 @@ const OrderModel = {
         payload.orderId = shortid.generate()
         payload.createdAt = new Date()
 
-        state.data.push(payload)
+        state.data.unshift(payload)
         setLocalData('order', state.data)
     }),
     update: action((state, payload) => {
