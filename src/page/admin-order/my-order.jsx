@@ -2,6 +2,7 @@ import { useStoreActions, useStoreState } from 'easy-peasy';
 import { useState } from 'react';
 import { Table, Button } from "reactstrap"
 import OrderItems from './order-items'
+import { dateTime } from '../../util/helper';
 
 
 function MyOrder() {
@@ -63,7 +64,7 @@ function MyOrder() {
                             <td>{item.pdtItem.length}</td>
                             <td>BDT{totalCal(item.pdtItem)}</td>
                             <td>{item.status}</td>
-                            <td>{item.createdAt}</td>
+                            <td>{dateTime(item.createdAt)}</td>
                             <td>
                                 <Button color='warning' onClick={() => processingHandler(item.orderId)}>Processing</Button>
                                 <Button color='danger' onClick={() => cancelHandler(item.orderId)} >Cancel</Button>

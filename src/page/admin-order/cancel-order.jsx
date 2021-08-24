@@ -2,7 +2,7 @@ import { Button, Table } from "reactstrap";
 import { useStoreState } from 'easy-peasy';
 import OrderItems from "./order-items";
 import { useState } from "react";
-
+import { dateTime } from "../../util/helper";
 
 
 
@@ -48,7 +48,7 @@ function CancelOrder() {
                             <td>{item.pdtItem.length}</td>
                             <td>BDT{totalCal(item.pdtItem)}</td>
                             <td>{item.status}</td>
-                            <td>{item.createdAt}</td>
+                            <td>{dateTime(item.createdAt)}</td>
                             <td>
                                 <Button onClick={() => modalHandler(item.pdtItem)}>View</Button>
                             </td>

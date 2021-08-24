@@ -3,7 +3,7 @@ import Tab from './tab'
 import Sidebar from '../../components/layout/sidebar'
 
 
-function Order() {
+function UserOrder() {
     return (
         <Container>
             <Row>
@@ -18,4 +18,4 @@ function Order() {
     )
 }
 
-export default Order
+export default UserOrder

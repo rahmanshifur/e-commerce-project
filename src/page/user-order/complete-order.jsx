@@ -2,9 +2,10 @@ import { useStoreActions, useStoreState } from 'easy-peasy';
 import { useState } from 'react';
 import { Table, Button } from "reactstrap"
 import OrderItems from './order-items'
+import { dateTime } from '../../util/helper';
 
 
-function AllOrder() {
+function CompleteOrder() {
     const [isOpen, setIsOpen] = useState(false)
     const [pdtItem, setPdtItem] = useState([])
 
@@ -25,51 +26,33 @@ function AllOrder() {
         setPdtItem(pdtItem)
     }
 
-    const cancelHandler = (orderId) => {
-        let obj = {
-            orderId: orderId,
-            status: 'CANCEL'
-        }
-        updateOrder(obj)
-    }
 
-    const completeHandler = (orderId) => {
-        let obj = {
-            orderId: orderId,
-            status: 'COMPLETE'
-        }
-        updateOrder(obj)
-    }
 
     return (
         <div>
             <Table>
                 <thead>
-                    <tr className='text-center'>
+                    <tr>
                         <th>#</th>
                         <th>Order ID</th>
                         <th>No Order Item</th>
                         <th>Order Amount</th>
                         <th>Order Status</th>
                         <th>Date & Time</th>
-                        <th >Action</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {orderData && orderData.length > 0 && orderData.map((item, i) =>
+                    {orderData && orderData.length > 0 && orderData.map((item, i) => item.status === "COMPLETE" &&
 
-                        <tr key={item.id} className='text-center'>
+                        < tr key={item.id} >
                             <td>{++i}</td>
                             <td>{item.orderId}</td>
                             <td>{item.pdtItem.length}</td>
                             <td>BDT{totalCal(item.pdtItem)}</td>
                             <td>{item.status}</td>
-                            <td>{item.createdAt}</td>
-                            <td className='d-flex'>
-                                {(item.status === 'ORDER' &&
-                                    <>
-                                        <Button style={{ marginRight: '10px' }} color='danger' onClick={() => cancelHandler(item.orderId)} >Cancel</Button>
-                                    </>)}
+                            <td>{dateTime(item.createdAt)}</td>
+                            <td>
                                 <Button onClick={() => modalHandler(item.pdtItem)} >View</Button>
                             </td>
                         </tr>
@@ -77,8 +60,8 @@ function AllOrder() {
                 </tbody>
             </Table>
             {isOpen && <OrderItems pdtItem={pdtItem} toggle={() => setIsOpen(false)} />}
-        </div>
+        </div >
     )
 }
 
-export default AllOrder
+export default CompleteOrder

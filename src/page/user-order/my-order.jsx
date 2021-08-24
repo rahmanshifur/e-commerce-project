@@ -2,9 +2,10 @@ import { useStoreActions, useStoreState } from 'easy-peasy';
 import { useState } from 'react';
 import { Table, Button } from "reactstrap"
 import OrderItems from './order-items'
+import { dateTime } from '../../util/helper';
 
 
-function CompleteOrder() {
+function MyOrder() {
     const [isOpen, setIsOpen] = useState(false)
     const [pdtItem, setPdtItem] = useState([])
 
@@ -25,7 +26,13 @@ function CompleteOrder() {
         setPdtItem(pdtItem)
     }
 
-
+    const cancelHandler = (orderId) => {
+        let obj = {
+            orderId: orderId,
+            status: 'CANCEL'
+        }
+        updateOrder(obj)
+    }
 
     return (
         <div>
@@ -42,15 +49,18 @@ function CompleteOrder() {
                     </tr>
                 </thead>
                 <tbody>
-                    {orderData && orderData.length > 0 && orderData.map((item, i) => item.status === "COMPLETE" &&
+                    {orderData && orderData.length > 0 && orderData.map((item, i) => item.status === 'ORDER' &&
 
-                        < tr key={item.id} >
+                        <tr key={item.id}>
                             <td>{++i}</td>
                             <td>{item.orderId}</td>
                             <td>{item.pdtItem.length}</td>
                             <td>BDT{totalCal(item.pdtItem)}</td>
                             <td>{item.status}</td>
-                            <td>{item.createdAt}</td>
+                            <td>{dateTime(item.createdAt)}</td>
+                            <td>
+                                <Button onClick={() => cancelHandler(item.orderId)} color='danger' >Cancel</Button>
+                            </td>
                             <td>
                                 <Button onClick={() => modalHandler(item.pdtItem)} >View</Button>
                             </td>
@@ -59,8 +69,8 @@ function CompleteOrder() {
                 </tbody>
             </Table>
             {isOpen && <OrderItems pdtItem={pdtItem} toggle={() => setIsOpen(false)} />}
-        </div >
+        </div>
     )
 }
 
-export default CompleteOrder
+export default MyOrder

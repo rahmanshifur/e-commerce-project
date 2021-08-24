@@ -1,5 +1,5 @@
 import { useStoreActions, useStoreState } from 'easy-peasy';
-import { useState } from 'react';
+import { useState, React } from 'react';
 import { Table, Button, Input } from "reactstrap"
 import OrderItems from './order-items'
 import { dateTime } from '../../util/helper';
@@ -38,24 +38,9 @@ function AllOrder() {
         updateOrder(obj)
     }
 
-    const completeHandler = (orderId) => {
-        let obj = {
-            orderId: orderId,
-            status: 'COMPLETE'
-        }
-        updateOrder(obj)
-    }
-    const processingHandler = (orderId) => {
-        let obj = {
-            orderId: orderId,
-            status: 'PROCESSING'
-        }
-        updateOrder(obj)
-    }
-
     const filterHandler = () => {
         if (!startDate || !endDate) {
-            alert('Please select a valid start-date and end-date')
+            alert('Please provide a valid start-date & end-date')
             return
         }
         filterOrder({ startDate, endDate })
@@ -65,12 +50,11 @@ function AllOrder() {
         setStartDate(null)
         setEndDate(null)
         resetFilter()
-
     }
 
     return (
         <div>
-            <div className='d-flex justify-content-between py-5'>
+            <div className="d-flex justify-content-between py-5">
                 <div>
                     <Input
                         type='date'
@@ -115,14 +99,10 @@ function AllOrder() {
                             <td>{item.status}</td>
                             <td>{dateTime(item.createdAt)}</td>
                             <td className='d-flex'>
-                                {(item.status === 'ORDER' || item.status === 'PROCESSING') &&
+                                {(item.status === 'ORDER' &&
                                     <>
                                         <Button style={{ marginRight: '10px' }} color='danger' onClick={() => cancelHandler(item.orderId)} >Cancel</Button>
-                                    </>}
-                                {item.status === 'ORDER' &&
-                                    <Button style={{ marginRight: '10px' }} color='warning' onClick={() => processingHandler(item.orderId)} >Processing</Button>}
-                                {item.status === 'PROCESSING' &&
-                                    <Button style={{ marginRight: '10px' }} onClick={() => completeHandler(item.orderId)} >Complete</Button>}
+                                    </>)}
                                 <Button onClick={() => modalHandler(item.pdtItem)} >View</Button>
                             </td>
                         </tr>

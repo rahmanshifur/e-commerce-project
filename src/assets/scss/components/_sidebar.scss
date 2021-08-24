@@ -1,0 +1,36 @@
+// .scat{
+//     display: none;
+//     li{
+//         list-style: none;
+//         a{
+//     text-decoration: none;
+
+//         }
+//     }
+
+// }
+// .cat:hover{
+// .scat{
+//     display: block;
+// }
+// }
+
+
+.cat{
+     .scat{
+         display: none;
+         li{
+             list-style: none;
+             a{
+                 text-decoration: none;
+             }
+         }
+     }
+      &:hover{
+        .scat{
+
+            display: block;
+        }
+    }
+
+}
