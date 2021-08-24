@@ -4,7 +4,8 @@ import { Button, Table } from "reactstrap"
 
 export default () => {
     const list = useStoreState(state => state.user.data)
-    const { remove, edit } = useStoreActions(action => action.user)
+    const { remove, edit, activeInactive } = useStoreActions(action => action.user)
+
     return (
         <Table>
             <thead>
@@ -17,6 +18,7 @@ export default () => {
                     <th>Email</th>
                     <th>Address</th>
                     <th>Contact</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -30,8 +32,10 @@ export default () => {
                         <td>{item.email}</td>
                         <td>{item.address}</td>
                         <td>{item.contact}</td>
+                        <td>{Number(item.status) === 1 ? 'Active' : 'Inactive'}</td>
                         <td>
-                            <Button onClick={() => edit(item.id)}>Edit</Button>
+                            <Button onClick={() => activeInactive(item.id)}>{Number(item.status) === 1 ? 'Inactive' : 'Active'}</Button>
+                            <Button onClick={() => edit(item.id)} color='dark' className='mx-3'>Edit</Button>
                             <Button onClick={() => remove(item.id)} className='btn-danger'>Delete</Button>
                         </td>
                     </tr>

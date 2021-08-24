@@ -10,8 +10,11 @@ const AuthModel = {
             alert('Invalid credential')
             return
         }
+        if (Number(authUser[0].status) !== 1) {
+            alert('Your account is inactive, please contact our support!')
+            return
+        }
         alert('Login successfully')
-
         state.data = authUser
         setLocalData('auth', state.data)
 
@@ -21,8 +24,6 @@ const AuthModel = {
         state.data = []
         navigate('/home')
         setLocalData('auth', state.data)
-
-
     })
 }
 export default AuthModel

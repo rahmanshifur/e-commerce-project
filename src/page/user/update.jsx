@@ -9,14 +9,15 @@ class Update extends Component {
         password: '',
         confirmPassword: '',
         address: '',
-        contact: ''
+        contact: '',
+        status: ''
     }
 
     componentDidMount = e => {
-        let { name, email, password, confirmPassword, address, contact } = this.props.editItem
+        let { name, email, password, confirmPassword, address, contact, status } = this.props.editItem
 
         this.setState({
-            name, email, password, confirmPassword, address, contact
+            name, email, password, confirmPassword, address, contact, status
         })
     }
 
@@ -28,12 +29,12 @@ class Update extends Component {
 
     submitHandler = e => {
         e.preventDefault()
-        let { name, email, password, confirmPassword, address, contact } = this.state
+        let { name, email, password, confirmPassword, address, contact, status } = this.state
         if (password !== confirmPassword) {
             alert(`ConfirmPassword doesn't match`)
         }
 
-        let arr = { name, email, password, address, contact, id: this.props.editItem.id }
+        let arr = { name, email, password, address, contact, status, id: this.props.editItem.id }
         store.getActions().user.update(arr)
 
         this.setState({
@@ -42,13 +43,14 @@ class Update extends Component {
             password: '',
             confirmPassword: '',
             address: '',
-            contact: ''
+            contact: '',
+            status: 0
         })
         alert('User Update successfully')
     }
 
     render() {
-        let { name, email, password, confirmPassword, address, contact } = this.state
+        let { name, email, password, confirmPassword, address, contact, status } = this.state
 
         return (
             <Form onSubmit={this.submitHandler}>
@@ -101,6 +103,18 @@ class Update extends Component {
                         onChange={this.changeHandler}
                         required
                     />
+
+                    <Input
+                        type='select'
+                        name='status'
+                        value={status}
+                        onChange={this.changeHandler}
+                        required
+                    >
+                        <option value=''>Select Status</option>
+                        <option value={1}>Active</option>
+                        <option value={0}>Inactive</option>
+                    </Input>
 
                     <Button type='submit'>Update</Button>
                 </FormGroup>
