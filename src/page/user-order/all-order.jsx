@@ -2,8 +2,7 @@ import { useStoreActions, useStoreState } from 'easy-peasy';
 import { useState, React } from 'react';
 import { Table, Button, Input } from "reactstrap"
 import OrderItems from './order-items'
-import { dateTime } from '../../util/helper';
-
+import { dateTime } from '../../util/helper'
 
 function AllOrder() {
     const [isOpen, setIsOpen] = useState(false)
@@ -15,8 +14,6 @@ function AllOrder() {
     const updateOrder = useStoreActions(action => action.order.update)
     const filterOrder = useStoreActions(action => action.order.filterOrder)
     const resetFilter = useStoreActions(action => action.order.resetFilter)
-
-
     const totalCal = (orderItem) => {
         let total = 0;
         orderItem.forEach(item => {
@@ -67,6 +64,7 @@ function AllOrder() {
                     <Input
                         type='date'
                         value={endDate !== null && endDate}
+
                         onChange={(e) => setEndDate(e.target.value)}
                         min={startDate}
                     />
@@ -74,6 +72,7 @@ function AllOrder() {
                 <div>
                     <Button className='btn-dark' onClick={() => filterHandler()}>Filter</Button>
                     <Button className='btn-dark ms-3' onClick={() => resetHandler()}>Reset</Button>
+
                 </div>
             </div>
             <Table>

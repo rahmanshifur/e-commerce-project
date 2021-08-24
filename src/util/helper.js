@@ -1,4 +1,5 @@
-import dateFormat from 'dateformat'
+
+import dateFormat from 'dateformat';
 
 export const setLocalData = (key, data) => {
     localStorage.setItem([key], JSON.stringify(data))
@@ -12,5 +13,5 @@ export const getLocalData = (key) => {
 }
 
 export const dateTime = (date = new Date()) => {
-    return dateFormat(date, "ddd, mmm dS, yyyy, h:MM TT");
+    return dateFormat(date, "ddd, mmm dS, yyyy, h:MM");
 }
