@@ -14,6 +14,7 @@ const UserModel = {
             contact: payload.contact,
             address: payload.address,
             password: payload.password,
+            status: payload.status
         }
         state.data.push(obj)
         setLocalData('user', state.data)
@@ -39,6 +40,17 @@ const UserModel = {
         let arr = state.data.filter(item => item.id !== payload)
         state.data = arr
         state.editItem = {}
+        setLocalData('user', state.data)
+    }),
+    activeInactive: action((state, payload) => {
+        let arr = state.data.map(item => {
+            if (item.id === payload) {
+                item.status = Number(item.status) === 1 ? 0 : 1
+            }
+            return item
+        })
+        state.editItem = {}
+        state.data = arr
         setLocalData('user', state.data)
 
     })

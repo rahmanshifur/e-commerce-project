@@ -6,6 +6,7 @@ import { getLocalData, setLocalData } from "../../util/helper";
 const SubCategoryModel = {
     data: getLocalData('subcategory'),
     editItem: {},
+    tmpData: [],
     create: action((state, payload) => {
         let obj = {
             id: shortid.generate(),
@@ -38,6 +39,33 @@ const SubCategoryModel = {
         state.editItem = {}
         setLocalData('subcategory', state.data)
 
+    }),
+    filterData: action((state, payload) => {
+        let arr = state.data.filter(item => {
+            let res = true
+            if (payload.id && !item.id.toLowerCase().includes(payload.id.toLowerCase())) {
+                res = false
+            }
+            if (payload.catName && !item.catName.toLowerCase().includes(payload.catName.toLowerCase())) {
+                res = false
+            }
+            if (payload.scatName && !item.scatName.toLowerCase().includes(payload.scatName.toLowerCase())) {
+                res = false
+            }
+            if (res) {
+                return item
+            }
+        })
+        state.data = arr
+        state.tmpData = state.data
+    }),
+    resetData: action((state, payload) => {
+        if (state.tmpData.length === 0) {
+            return
+        }
+
+        state.data = state.tmpData
+        state.tmpData = []
     })
 
 }

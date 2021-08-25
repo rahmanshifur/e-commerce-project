@@ -9,7 +9,8 @@ class Create extends Component {
         password: '',
         confirmPassword: '',
         address: '',
-        contact: ''
+        contact: '',
+        status: ''
     }
 
     changeHandler = e => {
@@ -20,13 +21,13 @@ class Create extends Component {
 
     submitHandler = e => {
         e.preventDefault()
-        let { name, email, password, confirmPassword, address, contact } = this.state
+        let { name, email, password, confirmPassword, address, contact, status } = this.state
         if (password !== confirmPassword) {
             alert(`ConfirmPassword doesn't match`)
             return
         }
 
-        let arr = { name, email, password, address, contact }
+        let arr = { name, email, password, address, contact, status }
         store.getActions().user.create(arr)
 
         this.setState({
@@ -35,13 +36,15 @@ class Create extends Component {
             password: '',
             confirmPassword: '',
             address: '',
-            contact: ''
+            contact: '',
+            status: ''
+
         })
         alert('User create successfully')
     }
 
     render() {
-        let { name, email, password, confirmPassword, address, contact } = this.state
+        let { name, email, password, confirmPassword, address, contact, status } = this.state
 
         return (
             <Form onSubmit={this.submitHandler}>
@@ -94,7 +97,16 @@ class Create extends Component {
                         onChange={this.changeHandler}
                         required
                     />
-
+                    <Input
+                        type='select'
+                        name='status'
+                        value={status}
+                        onChange={this.changeHandler}
+                    >
+                        <option value=''>Select Status</option>
+                        <option value={1}>Active</option>
+                        <option value={0}>Inactive</option>
+                    </Input>
                     <Button type='submit'>Save</Button>
                 </FormGroup>
             </Form>
