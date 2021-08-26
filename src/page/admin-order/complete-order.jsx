@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Table, Button } from "reactstrap"
 import OrderItems from './order-items'
 import { dateTime } from '../../util/helper';
+import FilterOrder from './filter-order';
 
 function CompleteOrder() {
     const [isOpen, setIsOpen] = useState(false)
@@ -29,6 +30,7 @@ function CompleteOrder() {
 
     return (
         <div>
+            <FilterOrder />
             <Table>
                 <thead>
                     <tr>

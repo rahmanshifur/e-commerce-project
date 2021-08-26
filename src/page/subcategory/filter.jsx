@@ -18,7 +18,7 @@ export default () => {
         filterData({ id, catName, scatName })
     }
 
-    const resetHandler = (e) => {
+    const resetHandler = () => {
         setId('')
         setCatName('')
         setScatName('')

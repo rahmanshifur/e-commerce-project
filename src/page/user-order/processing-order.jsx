@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Table, Button } from "reactstrap"
 import OrderItems from './order-items'
 import { dateTime } from '../../util/helper';
+import FilterOrder from '../admin-order/filter-order';
 
 
 function ProcessingOrder() {
@@ -10,7 +11,6 @@ function ProcessingOrder() {
     const [pdtItem, setPdtItem] = useState([])
 
     const orderData = useStoreState(state => state.order.data)
-    const updateOrder = useStoreActions(action => action.order.update)
 
 
     const totalCal = (orderItem) => {
@@ -28,6 +28,7 @@ function ProcessingOrder() {
 
     return (
         <div>
+            <FilterOrder />
             <Table>
                 <thead>
                     <tr>

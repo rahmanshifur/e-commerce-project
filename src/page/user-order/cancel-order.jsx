@@ -3,6 +3,7 @@ import { useStoreState } from 'easy-peasy';
 import OrderItems from "./order-items";
 import { useState } from "react";
 import { dateTime } from "../../util/helper";
+import FilterOrder from "./filter-order";
 
 
 
@@ -29,6 +30,7 @@ function CancelOrder() {
 
     return (
         <div>
+            <FilterOrder />
             <Table>
                 <thead>
                     <tr>

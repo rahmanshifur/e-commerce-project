@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Table, Button } from "reactstrap"
 import OrderItems from './order-items'
 import { dateTime } from '../../util/helper';
+import FilterOrder from './filter-order';
 
 
 function ProcessingOrder() {
@@ -37,6 +38,7 @@ function ProcessingOrder() {
 
     return (
         <div>
+            <FilterOrder />
             <Table>
                 <thead>
                     <tr>

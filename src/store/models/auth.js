@@ -24,8 +24,6 @@ const AuthModel = {
         state.data = []
         navigate('/home')
         setLocalData('auth', state.data)
-
-
     })
 }
 export default AuthModel

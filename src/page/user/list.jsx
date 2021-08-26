@@ -34,7 +34,7 @@ export default () => {
                         <td>{Number(item.status) === 1 ? 'Active' : 'Inactive'}</td>
                         <td>
                             <Button onClick={() => activeInactive(item.id)}>{Number(item.status) === 1 ? 'Inactive' : 'Active'}</Button>
-                            <Button onClick={() => edit(item.id)} className='btn-dark mx-3'>Edit</Button>
+                            <Button onClick={() => edit(item.id)} color='dark' className='mx-3'>Edit</Button>
                             <Button onClick={() => remove(item.id)} className='btn-danger'>Delete</Button>
                         </td>
                     </tr>

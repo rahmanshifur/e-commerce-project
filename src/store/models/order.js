@@ -33,11 +33,14 @@ const OrderModel = {
         setLocalData('order', state.data)
     }),
     filterOrder: action((state, payload) => {
+        if (state.tmpData.length !== 0) {
+            state.data = state.tmpData
+        }
         let { startDate, endDate } = payload
         startDate = new Date(startDate).getTime()
         endDate = new Date(endDate).getTime()
-        state.tmpData = state.data
         let arr = state.data.filter(item => new Date(item.createdAt).getTime() >= startDate && new Date(item.createdAt).getTime() <= endDate)
+        state.tmpData = state.data
         state.data = arr
     }),
     resetFilter: action((state) => {

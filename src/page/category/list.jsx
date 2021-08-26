@@ -5,6 +5,7 @@ import { Button, Table } from "reactstrap"
 export default () => {
     const list = useStoreState(state => state.category.data)
     const { remove, edit } = useStoreActions(action => action.category)
+
     return (
         <Table>
             <thead>

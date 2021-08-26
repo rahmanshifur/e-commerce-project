@@ -1,19 +1,18 @@
 import { useStoreActions, useStoreState } from 'easy-peasy';
 import { useState, React } from 'react';
-import { Table, Button, Input } from "reactstrap"
+import { Table, Button } from "reactstrap"
 import OrderItems from './order-items'
 import { dateTime } from '../../util/helper'
+import FilterOrder from './filter-order';
 
 function AllOrder() {
     const [isOpen, setIsOpen] = useState(false)
     const [pdtItem, setPdtItem] = useState([])
-    const [startDate, setStartDate] = useState(null)
-    const [endDate, setEndDate] = useState(null)
+
 
     const orderData = useStoreState(state => state.order.data)
     const updateOrder = useStoreActions(action => action.order.update)
-    const filterOrder = useStoreActions(action => action.order.filterOrder)
-    const resetFilter = useStoreActions(action => action.order.resetFilter)
+
     const totalCal = (orderItem) => {
         let total = 0;
         orderItem.forEach(item => {
@@ -35,46 +34,11 @@ function AllOrder() {
         updateOrder(obj)
     }
 
-    const filterHandler = () => {
-        if (!startDate || !endDate) {
-            alert('Please provide a valid start-date & end-date')
-            return
-        }
-        filterOrder({ startDate, endDate })
-    }
 
-    const resetHandler = () => {
-        setStartDate(null)
-        setEndDate(null)
-        resetFilter()
-    }
 
     return (
         <div>
-            <div className="d-flex justify-content-between py-5">
-                <div>
-                    <Input
-                        type='date'
-                        value={startDate !== null && startDate}
-                        onChange={(e) => setStartDate(e.target.value)}
-                        max={endDate}
-                    />
-                </div>
-                <div>
-                    <Input
-                        type='date'
-                        value={endDate !== null && endDate}
-
-                        onChange={(e) => setEndDate(e.target.value)}
-                        min={startDate}
-                    />
-                </div>
-                <div>
-                    <Button className='btn-dark' onClick={() => filterHandler()}>Filter</Button>
-                    <Button className='btn-dark ms-3' onClick={() => resetHandler()}>Reset</Button>
-
-                </div>
-            </div>
+            <FilterOrder />
             <Table>
                 <thead>
                     <tr className='text-center'>

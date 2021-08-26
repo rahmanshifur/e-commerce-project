@@ -44,7 +44,6 @@ class Update extends Component {
             confirmPassword: '',
             address: '',
             contact: '',
-            status: ''
         })
         alert('User Update successfully')
     }

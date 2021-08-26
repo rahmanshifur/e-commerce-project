@@ -37,8 +37,6 @@ class Create extends Component {
             confirmPassword: '',
             address: '',
             contact: '',
-            status: ''
-
         })
         alert('User create successfully')
     }
@@ -102,6 +100,7 @@ class Create extends Component {
                         name='status'
                         value={status}
                         onChange={this.changeHandler}
+                        required
                     >
                         <option value=''>Select Status</option>
                         <option value={1}>Active</option>

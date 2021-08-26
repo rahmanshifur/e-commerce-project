@@ -41,28 +41,30 @@ const SubCategoryModel = {
 
     }),
     filterData: action((state, payload) => {
+        if (state.tmpData.length !== 0) {
+            state.data = state.tmpData
+        }
         let arr = state.data.filter(item => {
             let res = true
             if (payload.id && !item.id.toLowerCase().includes(payload.id.toLowerCase())) {
                 res = false
             }
-            if (payload.catName && !item.catName.toLowerCase().includes(payload.catName.toLowerCase())) {
+            if (payload.catName && !item.name.toLowerCase().includes(payload.catName.toLowerCase())) {
                 res = false
             }
-            if (payload.scatName && !item.scatName.toLowerCase().includes(payload.scatName.toLowerCase())) {
+            if (payload.scatName && !item.category.toLowerCase().includes(payload.scatName.toLowerCase())) {
                 res = false
             }
             if (res) {
                 return item
             }
         })
-        state.data = arr
         state.tmpData = state.data
+        state.data = arr
     }),
-    resetData: action((state, payload) => {
-        if (state.tmpData.length === 0) {
-            return
-        }
+    resetData: action((state) => {
+        if (state.tmpData.length === 0)
+            return;
 
         state.data = state.tmpData
         state.tmpData = []
