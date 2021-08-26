@@ -47,8 +47,6 @@ const ProductModel = {
         setLocalData('product', state.data)
     }),
     filterData: action((state, payload) => {
-        console.log(payload)
-        return
         if (state.tmpData.length !== 0) {
             state.data = state.tmpData
         }
@@ -60,9 +58,34 @@ const ProductModel = {
             if (payload.title && !item.title.toLowerCase().includes(payload.title.toLowerCase())) {
                 res = false
             }
-            if (payload.tag && !item.tags.toLowerCase().includes(payload.tag.toLowerCase())) {
+            if (payload.price && Number(item.price) !== Number(payload.price)) {
                 res = false
             }
+            if (payload.subcategory && item.subcategory_id !== payload.subcategory) {
+                res = false
+            }
+            if (payload.color && item.colors !== payload.color) {
+                res = false
+            }
+            if (payload.tag && item.tags !== payload.tag) {
+                res = false
+            }
+            if (payload.size && item.sizes !== payload.size) {
+                res = false
+            }
+
+            if (payload.category) {
+                let count = 0
+                payload.subcategories.forEach(scat => {
+                    if (scat.category === payload.category && scat.id === item.subcategory_id) {
+                        count++;
+                    }
+                })
+                if (count === 0) {
+                    res = false
+                }
+            }
+
             if (res) {
                 return item
             }
