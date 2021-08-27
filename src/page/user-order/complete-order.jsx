@@ -1,4 +1,4 @@
-import { useStoreActions, useStoreState } from 'easy-peasy';
+import { useStoreState } from 'easy-peasy';
 import { useState } from 'react';
 import { Table, Button } from "reactstrap"
 import OrderItems from './order-items'
@@ -11,7 +11,6 @@ function CompleteOrder() {
     const [pdtItem, setPdtItem] = useState([])
 
     const orderData = useStoreState(state => state.order.data)
-    const updateOrder = useStoreActions(action => action.order.update)
 
 
     const totalCal = (orderItem) => {

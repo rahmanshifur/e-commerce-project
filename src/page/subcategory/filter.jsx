@@ -26,7 +26,7 @@ export default () => {
     }
 
     return (
-        <Form onSubmit={submitHandler} className='d-flex justify-content-between py-5'>
+        <Form onSubmit={submitHandler} className='d-flex justify-content-between'>
             <Input
                 type='text'
                 value={id}
