@@ -88,7 +88,6 @@ class Filter extends Component {
                     name='status'
                     value={status}
                     onChange={this.changeHandler}
-                    required
                 >
                     <option value=''>Select Status</option>
                     <option value={1}>Active</option>

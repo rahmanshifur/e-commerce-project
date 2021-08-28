@@ -1,6 +1,6 @@
 import { Button, Form, Input } from "reactstrap"
 import { useState } from 'react';
-import { useStoreActions } from 'easy-peasy';
+import { useStoreActions, useStoreState } from 'easy-peasy';
 
 export default () => {
     const [id, setId] = useState('')
@@ -8,6 +8,7 @@ export default () => {
     const [scatName, setScatName] = useState('')
 
     const { filterData, resetData } = useStoreActions(action => action.subcategory)
+    const catData = useStoreState(state => state.category.data)
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -26,19 +27,22 @@ export default () => {
     }
 
     return (
-        <Form onSubmit={submitHandler} className='d-flex justify-content-between'>
+        <Form onSubmit={submitHandler} className='d-flex justify-content-between py-5'>
             <Input
                 type='text'
                 value={id}
                 onChange={(e) => setId(e.target.value)}
                 placeholder="Enter id"
             />
-            <Input
-                type='text'
+            <select
                 value={catName}
                 onChange={(e) => setCatName(e.target.value)}
-                placeholder="Enter category name"
-            />
+                placeholder='Enter name'
+            >
+                <option value=''>Select Category</option>
+                {catData && catData.length > 0 && catData.map((item) =>
+                    <option key={item.id} value={item.id}>{item.name}</option>)}
+            </select>
             <Input
                 type='text'
                 value={scatName}

@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import { Button, Form, FormGroup, Input } from 'reactstrap';
 import store from '../../store'
 
+
+
+const colorData = store.getState().color.data
+const sizeData = store.getState().size.data
+const tagData = store.getState().tag.data
+const subcategoryData = store.getState().subcategory.data
+const categoryData = store.getState().category.data
+
+
 class Update extends Component {
     state = {
         category_id: '',
@@ -18,7 +27,18 @@ class Update extends Component {
     }
 
     componentDidMount = e => {
-        let { category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags } = this.props.editItem
+        let { subcategory_id, title, price, vat, discount, description, colors, sizes, tags } = this.props.editItem
+
+
+        let category_id = ''
+        subcategoryData.forEach(scat => {
+            if (scat.id === subcategory_id) {
+                category_id = scat.category
+                return;
+            }
+        })
+
+        console.log(category_id)
 
         this.setState({
             category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags
@@ -56,11 +76,6 @@ class Update extends Component {
     render() {
         let { category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags } = this.state
 
-        const colorData = store.getState().color.data
-        const sizeData = store.getState().size.data
-        const tagData = store.getState().tag.data
-        const subcategoryData = store.getState().subcategory.data
-        const categoryData = store.getState().category.data
 
 
         return (
@@ -185,3 +200,4 @@ class Update extends Component {
 }
 
 export default Update;
+

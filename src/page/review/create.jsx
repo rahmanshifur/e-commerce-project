@@ -24,11 +24,11 @@ export default () => {
             star: star
         })
 
-
         setComment('')
         setStar('')
         setProduct_id('')
         setUser_id('')
+        alert('Review create successfully')
     }
     return (
         <Form onSubmit={submitHandler} >
@@ -42,9 +42,9 @@ export default () => {
                     <option value=''>Select Star</option>
                     <option value='1'>1 Star</option>
                     <option value='2'>2 Star</option>
-                    <option value='2'>3 Star</option>
-                    <option value='2'>4 Star</option>
-                    <option value='2'>5 Star</option>
+                    <option value='3'>3 Star</option>
+                    <option value='4'>4 Star</option>
+                    <option value='5'>5 Star</option>
 
                 </select>
                 <textarea

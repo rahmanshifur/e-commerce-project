@@ -20,6 +20,7 @@ export default () => {
                     <th>Comment</th>
                     <th>User</th>
                     <th>Product</th>
+                    <th>Date&Time</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -33,6 +34,7 @@ export default () => {
                         <td>{item.comment}</td>
                         <td>{userData.map(usr => usr.id === item.user_id && <>{usr.name}</>)}</td>
                         <td>{productData.map(pdt => pdt.id === item.product_id && <>{pdt.title}</>)}</td>
+                        <td>{item.date}</td>
                         <td>
                             <Button onClick={() => edit(item.id)}>Edit</Button>
                             <Button onClick={() => remove(item.id)} className='btn-danger'>Delete</Button>

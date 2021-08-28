@@ -49,10 +49,10 @@ const SubCategoryModel = {
             if (payload.id && !item.id.toLowerCase().includes(payload.id.toLowerCase())) {
                 res = false
             }
-            if (payload.catName && !item.name.toLowerCase().includes(payload.catName.toLowerCase())) {
+            if (payload.catName && item.category !== payload.catName) {
                 res = false
             }
-            if (payload.scatName && !item.category.toLowerCase().includes(payload.scatName.toLowerCase())) {
+            if (payload.scatName && !item.name.toLowerCase().includes(payload.scatName.toLowerCase())) {
                 res = false
             }
             if (res) {

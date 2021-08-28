@@ -76,7 +76,7 @@ const UserModel = {
             if (payload.contact && !item.contact.toLowerCase().includes(payload.contact.toLowerCase())) {
                 res = false
             }
-            if (payload.status && Number(item.status) === Number(payload.status)) {
+            if (payload.status && Number(item.status) !== Number(payload.status)) {
                 res = false
             }
             if (res) {

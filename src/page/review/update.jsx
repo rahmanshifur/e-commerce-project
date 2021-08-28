@@ -10,7 +10,7 @@ export default ({ editItem }) => {
     const [product_id, setProduct_id] = useState(editItem.product_id)
     const [user_id, setUser_id] = useState(editItem.user_id)
 
-    const { update } = useStoreActions(action => action.review)
+    const update = useStoreActions(action => action.review.update)
     const productData = useStoreState(state => state.product.data)
     const userData = useStoreState(state => state.user.data)
 
@@ -18,6 +18,8 @@ export default ({ editItem }) => {
         e.preventDefault()
 
         update({
+            id: editItem.id,
+            date: editItem.date,
             product_id: product_id,
             user_id: user_id,
             comment: comment,
@@ -28,10 +30,11 @@ export default ({ editItem }) => {
         setStar('')
         setProduct_id('')
         setUser_id('')
+        alert('Review update successfully')
     }
     return (
-        <Form onSubmit={submitHandler} >
-            <FormGroup className=''>
+        <Form onSubmit={submitHandler}>
+            <FormGroup>
 
                 <select
                     value={star}
@@ -39,11 +42,12 @@ export default ({ editItem }) => {
                     placeholder='Enter number'
                     required
                 >
+                    <option value=''>Select Star</option>
                     <option value='1'>1 Star</option>
                     <option value='2'>2 Star</option>
-                    <option value='2'>3 Star</option>
-                    <option value='2'>4 Star</option>
-                    <option value='2'>5 Star</option>
+                    <option value='3'>3 Star</option>
+                    <option value='4'>4 Star</option>
+                    <option value='5'>5 Star</option>
 
                 </select>
                 <textarea
@@ -71,7 +75,7 @@ export default ({ editItem }) => {
                         <option key={item.id} value={item.id}>{item.title}</option>)}
                 </select>
 
-                <Button type='submit'>Save</Button>
+                <Button type='submit'>Update</Button>
             </FormGroup>
         </Form>
     )
