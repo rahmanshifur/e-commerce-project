@@ -17,7 +17,7 @@ class Filter extends Component {
         let { name, id, email, address, contact, status } = this.state
 
         if (!name && !id && !email && !address && !contact && !status) {
-            alert("please provide any text")
+            alert("please provide any value")
             return
         }
 

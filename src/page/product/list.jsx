@@ -20,7 +20,7 @@ export default ({ addHandler }) => {
         <div>
             <div className="d-flex justify-content-between py-5">
                 <h1 >List of Product</h1>
-                {/* <Button onClick={() => addHandler()} >Add</Button> */}
+                <Button isOpen={true} onClick={() => addHandler()} >Add</Button>
             </div>
             <Table>
                 <thead>

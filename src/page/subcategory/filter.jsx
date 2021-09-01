@@ -14,7 +14,7 @@ export default () => {
         e.preventDefault()
         if (!id && !catName && !scatName) {
             alert('Please provide id or category name or subcategory name!')
-            return
+            return;
         }
         filterData({ id, catName, scatName })
     }

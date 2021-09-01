@@ -12,6 +12,7 @@ const categoryData = store.getState().category.data
 
 
 class Update extends Component {
+
     state = {
         category_id: '',
         subcategory_id: '',
@@ -37,8 +38,6 @@ class Update extends Component {
                 return;
             }
         })
-
-        console.log(category_id)
 
         this.setState({
             category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags
