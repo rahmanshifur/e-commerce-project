@@ -1,10 +1,15 @@
 import { useStoreActions } from "easy-peasy"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button, Form, FormGroup, Input } from "reactstrap"
 
 
-export default ({ editItem }) => {
-    const [name, setName] = useState(editItem.name)
+export default ({ editItem, editHandler }) => {
+    const [name, setName] = useState('')
+
+    useEffect(() => {
+        setName(editItem.name)
+    }, [editItem.name]);
+
 
     const { update } = useStoreActions(action => action.tag)
 
@@ -16,6 +21,7 @@ export default ({ editItem }) => {
             id: editItem.id
         })
         setName('')
+        editHandler()
     }
     return (
         <Form onSubmit={submitHandler} >

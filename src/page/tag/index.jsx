@@ -1,19 +1,30 @@
-import { useStoreState } from "easy-peasy"
-
 import List from "./list"
 import Create from "./create"
 import Update from "./update"
 import Filter from "./filter"
+import { useState } from 'react';
+
 
 export default () => {
-    const { editItem } = useStoreState(state => state.tag)
+    const [isOpen, setIsOpen] = useState(false)
+    const [editItem, setEditItem] = useState({})
+
+
+    const editHandler = (abc = {}) => {
+        setIsOpen(!isOpen)
+        setEditItem(abc)
+    }
+
+
     return (
         <div>
-            {Object.keys(editItem).length > 0 ?
-                <Update editItem={editItem} /> :
-                <Create />}
+            {Object.keys(editItem).length !== 0 ? <Update editItem={editItem} editHandler={editHandler} /> :
+                isOpen && <Create editHandler={editHandler} />
+            }
+
+
             <Filter />
-            <List />
+            <List editHandler={editHandler} isOpen={isOpen || Object.keys(editItem).length !== 0} />
         </div>
     )
 }

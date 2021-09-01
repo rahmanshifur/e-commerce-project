@@ -13,12 +13,12 @@ export default () => {
 
     return (
         <div>
-            {Object.keys(editItem).length > 0 ?
-                <Update editItem={editItem} /> :
-                <Create />}
+            {Object.keys(editItem).length > 0 && <Update editItem={editItem} />}
+
+            {isOpen && <Create />}
+
             <Filter />
-            <List />
-            {isOpen && <Filter addHandler={setIsOpen(true)} />}
+            <List addHandler={() => setIsOpen(!isOpen)} />
         </div>
     )
 }

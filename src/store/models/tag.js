@@ -16,10 +16,6 @@ const TagModel = {
         setLocalData('tag', state.data)
 
     }),
-    edit: action((state, payload) => {
-        state.editItem = state.data.filter(item => item.id === payload)[0]
-
-    }),
     update: action((state, payload) => {
         let arr = state.data.map(item => {
             if (item.id === payload.id) {
@@ -30,7 +26,6 @@ const TagModel = {
         state.editItem = {}
         state.data = arr
         setLocalData('tag', state.data)
-
     }),
     remove: action((state, payload) => {
         let arr = state.data.filter(item => item.id !== payload)
@@ -64,8 +59,6 @@ const TagModel = {
         state.data = state.tmpData
         state.tmpData = []
     }),
-
-
 }
 
 export default TagModel
