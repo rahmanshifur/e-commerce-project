@@ -16,6 +16,7 @@ export default () => {
             {Object.keys(editItem).length > 0 ?
                 <Update editItem={editItem} /> :
                 <Create />}
+            <Filter />
             <List />
             {isOpen && <Filter addHandler={setIsOpen(true)} />}
         </div>
