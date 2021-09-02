@@ -23,14 +23,13 @@ class Update extends Component {
         description: '',
         colors: '',
         sizes: '',
-        tags: ''
-
+        tags: '',
+        id: '',
     }
 
-    componentDidMount = e => {
-        let { subcategory_id, title, price, vat, discount, description, colors, sizes, tags } = this.props.editItem
 
-
+    componentDidMount() {
+        let { subcategory_id, title, price, vat, discount, description, colors, sizes, tags, id } = this.props.editItem
         let category_id = ''
         subcategoryData.forEach(scat => {
             if (scat.id === subcategory_id) {
@@ -40,8 +39,28 @@ class Update extends Component {
         })
 
         this.setState({
-            category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags
+            category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags, id
         })
+    }
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (prevState.id !== nextProps.editItem.id) {
+            let category_id = ''
+            subcategoryData.forEach(scat => {
+                if (scat.id === nextProps.editItem.subcategory_id) {
+                    category_id = scat.category
+                    return;
+                }
+            })
+
+
+            let { id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags } = nextProps.editItem
+
+            return {
+                id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags, category_id
+            }
+        }
+        return null
     }
 
 
@@ -71,6 +90,7 @@ class Update extends Component {
             tags: ''
         })
         alert('Product Update successfully')
+        this.props.editHandler()
     }
     render() {
         let { category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags } = this.state

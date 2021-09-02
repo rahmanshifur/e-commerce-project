@@ -1,11 +1,11 @@
 import { useStoreActions, useStoreState } from "easy-peasy"
 import { Button, Table } from "reactstrap"
-import { useState } from 'react';
 
 
-export default ({ addHandler }) => {
+
+export default ({ editHandler, isOpen }) => {
     const list = useStoreState(state => state.product.data)
-    const { remove, edit } = useStoreActions(action => action.product)
+    const { remove } = useStoreActions(action => action.product)
 
     const catData = useStoreState(state => state.category.data)
     const subcategoryData = useStoreState(state => state.subcategory.data)
@@ -20,7 +20,7 @@ export default ({ addHandler }) => {
         <div>
             <div className="d-flex justify-content-between py-5">
                 <h1 >List of Product</h1>
-                <Button isOpen={true} onClick={() => addHandler()} >Add</Button>
+                <Button onClick={() => editHandler()}>{isOpen ? 'Close' : 'Add'}</Button>
             </div>
             <Table>
                 <thead>
@@ -57,7 +57,7 @@ export default ({ addHandler }) => {
                             <td>{sizeData.map(siz => siz.id === item.sizes && <>{siz.name}</>)}</td>
                             <td>{tagData.map(tg => tg.id === item.tags && <>{tg.name}</>)}</td>
                             <td>
-                                <Button onClick={() => edit(item.id)}>Edit</Button>
+                                <Button onClick={() => editHandler(item)}>Edit</Button>
                                 <Button onClick={() => remove(item.id)} className='btn-danger'>Delete</Button>
                             </td>
                         </tr>

@@ -44,6 +44,7 @@ class Create extends Component {
             tags: ''
         })
         alert('Product create successfully')
+        this.props.editHandler()
     }
     render() {
         let { category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags } = this.state
