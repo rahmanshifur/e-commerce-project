@@ -16,10 +16,6 @@ const ColorModel = {
         setLocalData('color', state.data)
 
     }),
-    edit: action((state, payload) => {
-        state.editItem = state.data.filter(item => item.id === payload)[0]
-
-    }),
     update: action((state, payload) => {
         let arr = state.data.map(item => {
             if (item.id === payload.id) {
@@ -36,7 +32,7 @@ const ColorModel = {
         let arr = state.data.filter(item => item.id !== payload)
         state.data = arr
         state.editItem = {}
-        setLocalData('category', state.data)
+        setLocalData('color', state.data)
     }),
     filterData: action((state, payload) => {
         if (state.tmpData.length !== 0) {

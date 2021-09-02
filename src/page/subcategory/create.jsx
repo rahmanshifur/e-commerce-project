@@ -3,7 +3,7 @@ import { useState } from "react"
 import { Button, Form, FormGroup, Input } from "reactstrap"
 
 
-export default () => {
+export default ({ editHandler }) => {
     const [name, setName] = useState('')
     const [category, setCategory] = useState('')
 
@@ -20,6 +20,7 @@ export default () => {
 
         setName('')
         setCategory('')
+        editHandler()
     }
     return (
         <Form onSubmit={submitHandler} >

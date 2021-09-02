@@ -3,7 +3,7 @@ import { useState } from "react"
 import { Button, Form, FormGroup, Input } from "reactstrap"
 
 
-export default () => {
+export default ({ editHandler }) => {
     const [name, setName] = useState('')
 
     const { create } = useStoreActions(action => action.color)
@@ -13,6 +13,7 @@ export default () => {
 
         create(name)
         setName('')
+        editHandler()
     }
     return (
         <Form onSubmit={submitHandler} >

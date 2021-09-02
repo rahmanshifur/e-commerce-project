@@ -5,7 +5,6 @@ import { getLocalData, setLocalData } from "../../util/helper";
 
 const SubCategoryModel = {
     data: getLocalData('subcategory'),
-    editItem: {},
     tmpData: [],
     create: action((state, payload) => {
         let obj = {
@@ -28,7 +27,6 @@ const SubCategoryModel = {
             }
             return item
         })
-        state.editItem = {}
         state.data = arr
         setLocalData('subcategory', state.data)
 
@@ -36,7 +34,6 @@ const SubCategoryModel = {
     remove: action((state, payload) => {
         let arr = state.data.filter(item => item.id !== payload)
         state.data = arr
-        state.editItem = {}
         setLocalData('subcategory', state.data)
 
     }),

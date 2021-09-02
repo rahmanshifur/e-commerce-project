@@ -9,10 +9,12 @@ export default ({ editHandler, isOpen }) => {
 
     return (
         <div>
-            <Button onClick={() => editHandler()}>{isOpen ? 'Close' : 'Add'}</Button>
+            <div className="d-flex justify-content-between py-5">
+                <h1>List of Tag</h1>
+                <Button onClick={() => editHandler()}>{isOpen ? 'Close' : 'Add'}</Button>
+            </div>
             <Table>
                 <thead>
-                    <h1>List of Tag</h1>
                     <tr>
                         <th>#</th>
                         <th>ID</th>
