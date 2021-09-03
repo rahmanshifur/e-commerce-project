@@ -11,7 +11,13 @@ export default () => {
     const [editItem, setEditITem] = useState({})
 
     const editHandler = (item = {}) => {
-        setIsOpen(!isOpen)
+        if (Object.keys(item).length !== 0) {
+
+            setIsOpen(true)
+        } else {
+            setIsOpen(!isOpen)
+
+        }
         setEditITem(item)
     }
     return (

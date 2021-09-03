@@ -5,7 +5,6 @@ import { setLocalData, getLocalData } from "../../util/helper";
 
 const CategoryModel = {
     data: getLocalData('category'),
-    editItem: {},
     tmpData: [],
     create: action((state, payload) => {
         let obj = {
@@ -22,7 +21,6 @@ const CategoryModel = {
             }
             return item
         })
-        state.editItem = {}
         state.data = arr
         setLocalData('category', state.data)
     }),

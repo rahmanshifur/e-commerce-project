@@ -43,22 +43,40 @@ class Update extends Component {
         })
     }
 
+    // static getDerivedStateFromProps(nextProps, prevState) {
+    //     if (prevState.id !== nextProps.editItem.id) {
+    //         let category_id = ''
+    //         subcategoryData.forEach(scat => {
+    //             if (scat.id === nextProps.editItem.subcategory_id) {
+    //                 category_id = scat.category
+    //                 return;
+    //             }
+    //         })
+
+
+    //         let { id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags } = nextProps.editItem
+
+    //         return {
+    //             id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags, category_id
+    //         }
+    //     }
+    //     return null
+    // }
+
+
     static getDerivedStateFromProps(nextProps, prevState) {
         if (prevState.id !== nextProps.editItem.id) {
             let category_id = ''
             subcategoryData.forEach(scat => {
                 if (scat.id === nextProps.editItem.subcategory_id) {
                     category_id = scat.category
-                    return;
+                    return
                 }
             })
 
+            nextProps.editItem.category_id = category_id
 
-            let { id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags } = nextProps.editItem
-
-            return {
-                id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags, category_id
-            }
+            return nextProps.editItem
         }
         return null
     }

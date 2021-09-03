@@ -19,7 +19,16 @@ class Update extends Component {
         this.setState({
             name, email, password, confirmPassword, address, contact, status
         })
+
     }
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (prevState.id !== nextProps.editItem.id) {
+            return nextProps.editItem
+        }
+        return null
+    }
+
 
     changeHandler = e => {
         this.setState({
@@ -45,6 +54,7 @@ class Update extends Component {
             address: '',
             contact: '',
         })
+        this.props.editHandler()
         alert('User Update successfully')
     }
 

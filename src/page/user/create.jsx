@@ -38,6 +38,7 @@ class Create extends Component {
             address: '',
             contact: '',
         })
+        this.props.editHandler()
         alert('User create successfully')
     }
 

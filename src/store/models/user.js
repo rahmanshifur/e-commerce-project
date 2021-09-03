@@ -5,7 +5,6 @@ import { getLocalData, setLocalData } from "../../util/helper";
 
 const UserModel = {
     data: getLocalData('user'),
-    editItem: {},
     tmpData: [],
     create: action((state, payload) => {
         let obj = {
@@ -31,14 +30,12 @@ const UserModel = {
             }
             return item
         })
-        state.editItem = {}
         state.data = arr
         setLocalData('user', state.data)
     }),
     remove: action((state, payload) => {
         let arr = state.data.filter(item => item.id !== payload)
         state.data = arr
-        state.editItem = {}
         setLocalData('user', state.data)
     }),
     activeInactive: action((state, payload) => {
@@ -48,7 +45,6 @@ const UserModel = {
             }
             return item
         })
-        state.editItem = {}
         state.data = arr
         setLocalData('user', state.data)
     }),

@@ -4,8 +4,8 @@ import { Button, Form, FormGroup, Input } from "reactstrap"
 
 
 export default ({ editItem, editHandler }) => {
-    const [name, setName] = useState(editItem.name)
-    const [category, setCategory] = useState(editItem.category)
+    const [name, setName] = useState('')
+    const [category, setCategory] = useState('')
 
     useEffect(() => {
         setName(editItem.name)

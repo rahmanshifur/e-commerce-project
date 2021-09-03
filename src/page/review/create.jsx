@@ -3,7 +3,7 @@ import { useState } from "react"
 import { Button, Form, FormGroup, Input } from "reactstrap"
 
 
-export default () => {
+export default ({ editHandler }) => {
 
     const [star, setStar] = useState('')
     const [comment, setComment] = useState('')
@@ -28,6 +28,7 @@ export default () => {
         setStar('')
         setProduct_id('')
         setUser_id('')
+        editHandler('')
         alert('Review create successfully')
     }
     return (

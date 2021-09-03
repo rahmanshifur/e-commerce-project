@@ -5,7 +5,6 @@ import { getLocalData, setLocalData } from "../../util/helper";
 
 const SizeModel = {
     data: getLocalData('size'),
-    editItem: {},
     tmpData: [],
     create: action((state, payload) => {
         let obj = {
@@ -23,7 +22,6 @@ const SizeModel = {
             }
             return item
         })
-        state.editItem = {}
         state.data = arr
         setLocalData('size', state.data)
 
@@ -31,7 +29,6 @@ const SizeModel = {
     remove: action((state, payload) => {
         let arr = state.data.filter(item => item.id !== payload)
         state.data = arr
-        state.editItem = {}
         setLocalData('size', state.data)
     }),
     filterData: action((state, payload) => {

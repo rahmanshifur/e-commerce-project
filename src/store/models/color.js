@@ -5,7 +5,6 @@ import { getLocalData, setLocalData } from "../../util/helper";
 
 const ColorModel = {
     data: getLocalData('color'),
-    editItem: {},
     tmpData: [],
     create: action((state, payload) => {
         let obj = {
@@ -23,7 +22,6 @@ const ColorModel = {
             }
             return item
         })
-        state.editItem = {}
         state.data = arr
         setLocalData('color', state.data)
 
@@ -31,7 +29,6 @@ const ColorModel = {
     remove: action((state, payload) => {
         let arr = state.data.filter(item => item.id !== payload)
         state.data = arr
-        state.editItem = {}
         setLocalData('color', state.data)
     }),
     filterData: action((state, payload) => {

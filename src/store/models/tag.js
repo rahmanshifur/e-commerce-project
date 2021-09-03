@@ -5,7 +5,6 @@ import { getLocalData, setLocalData } from "../../util/helper";
 
 const TagModel = {
     data: getLocalData('tag'),
-    editItem: {},
     tmpData: [],
     create: action((state, payload) => {
         let obj = {
@@ -23,14 +22,12 @@ const TagModel = {
             }
             return item
         })
-        state.editItem = {}
         state.data = arr
         setLocalData('tag', state.data)
     }),
     remove: action((state, payload) => {
         let arr = state.data.filter(item => item.id !== payload)
         state.data = arr
-        state.editItem = {}
         setLocalData('tag', state.data)
     }),
     filterData: action((state, payload) => {

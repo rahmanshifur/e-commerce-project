@@ -1,18 +1,26 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useStoreActions, useStoreState } from "easy-peasy"
 import { Button, Form, FormGroup, Input } from "reactstrap"
 
 
-export default ({ editItem }) => {
+export default ({ editItem, editHandler }) => {
 
-    const [star, setStar] = useState(editItem.star)
-    const [comment, setComment] = useState(editItem.comment)
-    const [product_id, setProduct_id] = useState(editItem.product_id)
-    const [user_id, setUser_id] = useState(editItem.user_id)
+    const [star, setStar] = useState('')
+    const [comment, setComment] = useState('')
+    const [product_id, setProduct_id] = useState('')
+    const [user_id, setUser_id] = useState('')
+
+    useEffect(() => {
+        setStar(editItem.star)
+        setComment(editItem.comment)
+        setProduct_id(editItem.product_id)
+        setUser_id(editItem.user_id)
+    }, [editItem.star])
 
     const update = useStoreActions(action => action.review.update)
     const productData = useStoreState(state => state.product.data)
     const userData = useStoreState(state => state.user.data)
+
 
     const submitHandler = e => {
         e.preventDefault()
@@ -30,6 +38,7 @@ export default ({ editItem }) => {
         setStar('')
         setProduct_id('')
         setUser_id('')
+        editHandler()
         alert('Review update successfully')
     }
     return (
