@@ -1,7 +1,7 @@
 import { Link } from '@reach/router'
 import { useStoreActions, useStoreState } from 'easy-peasy'
 import { useState } from 'react'
-import { Collapse, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, UncontrolledAlert, UncontrolledDropdown } from "reactstrap"
+import { Collapse, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, UncontrolledDropdown } from "reactstrap"
 
 
 export default () => {
@@ -9,15 +9,32 @@ export default () => {
     const toggle = () => setIsOpen(!isOpen)
 
     const authData = useStoreState(state => state.auth.data)
+    const cartData = useStoreState(state => state.cart.data)
     const logoutHandler = useStoreActions(action => action.auth.logout)
+    const cartRemoveHandler = useStoreActions(action => action.cart.remove)
+
+
     return (
         <Navbar color='dark' dark expand='md' className='my-5 p-2 '>
             <NavbarBrand href='/' className='ps-3 '>LOGO</NavbarBrand>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
                 <Nav className='ms-auto' navbar>
+                    {cartData && cartData.length !== 0 &&
+                        <UncontrolledDropdown nav inNavbar>
+                            <DropdownToggle nav caret>Cart</DropdownToggle>
+                            <DropdownMenu right >
+                                {cartData.map((item, i) =>
+                                    <DropdownItem key={item.id} className='d-flex justify-content-between'>
+                                        <span>{++i}.</span>
+                                        <span>{item.title}</span>
+                                        <span>{item.quantity}x{item.price * item.quantity}</span>
+                                        <span onClick={() => cartRemoveHandler(item.id)}>x</span>
+                                    </DropdownItem>)}
+                            </DropdownMenu>
+                        </UncontrolledDropdown>
+                    }
 
-                    <NavItem><Link to='#' className='nav-link'>Cart</Link></NavItem>
                     <NavItem><Link to='/all-product' className='nav-link'>All-Product</Link></NavItem>
                     <NavItem><Link to='/checkout' className='nav-link'>Check-Out</Link></NavItem>
 

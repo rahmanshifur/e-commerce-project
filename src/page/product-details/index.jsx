@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useStoreState, useStoreActions } from 'easy-peasy';
 import { Col, Container, Row, CardTitle, CardSubtitle, CardText, CardBody, CardImg, Button, Input } from "reactstrap";
 import Sidebar from "../../components/layout/sidebar";
-import pdtImg from '../../assets/img/mac-mini.jpg'
 
 
 
@@ -35,7 +34,6 @@ function ProductDetails(props) {
         if (cartData.length === 0) {
             item.quantity = quantity
             addToCart(item)
-            alert('Product add to cart!')
             return;
         }
 
@@ -46,7 +44,6 @@ function ProductDetails(props) {
         if (checkPdt.length === 0) {
             item.quantity = quantity
             addToCart(item)
-            alert('Product add to cart!')
             return;
         }
 
@@ -66,7 +63,7 @@ function ProductDetails(props) {
                         <CardBody>
                             <Row>
                                 <Col md={6}>
-                                    <CardImg src={pdtImg} alt='product' />
+                                    <CardImg src={selPdt.file} alt='product' />
                                 </Col>
                                 <Col md={6}>
                                     <CardTitle tag="h5">{selPdt.title}</CardTitle>

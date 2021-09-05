@@ -2,16 +2,12 @@
 import { useStoreState } from 'easy-peasy';
 import { Col, Container, Row, Card, CardBody, CardImg, CardText, CardTitle, CardSubtitle } from "reactstrap";
 import Sidebar from './../../components/layout/sidebar';
-import pdtImg from '../../assets/img/mac-mini.jpg'
 import { Link } from '@reach/router';
 
 function ScatProduct(props) {
     const catData = useStoreState(state => state.category.data)
     const scatData = useStoreState(state => state.subcategory.data)
     const pdtData = useStoreState(state => state.product.data)
-    const clrData = useStoreState(state => state.color.data)
-    const sizData = useStoreState(state => state.size.data)
-    const tagData = useStoreState(state => state.tag.data)
 
     return (
         <section id="scat-product">
@@ -30,7 +26,7 @@ function ScatProduct(props) {
                             {pdtData.length > 0 && pdtData.map(pdt => pdt.subcategory_id === props.scatId &&
                                 <Card key={pdt.id} style={{ maxWidth: 250 }}>
 
-                                    <CardImg src={pdtImg} alt="Card image cap" />
+                                    <CardImg src={pdt.file} alt="Card image cap" />
                                     <CardBody>
                                         <CardTitle tag="h5">{pdt.title}</CardTitle>
                                         <CardSubtitle tag="h6" className="mb-2 text-muted"> Price :{pdt.price}</CardSubtitle>
