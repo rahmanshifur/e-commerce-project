@@ -25,11 +25,12 @@ class Update extends Component {
         sizes: '',
         tags: '',
         id: '',
+        file: ''
     }
 
 
     componentDidMount() {
-        let { subcategory_id, title, price, vat, discount, description, colors, sizes, tags, id } = this.props.editItem
+        let { subcategory_id, title, price, vat, discount, description, colors, sizes, tags, id, file } = this.props.editItem
         let category_id = ''
         subcategoryData.forEach(scat => {
             if (scat.id === subcategory_id) {
@@ -39,7 +40,7 @@ class Update extends Component {
         })
 
         this.setState({
-            category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags, id
+            category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags, id, file
         })
     }
 
@@ -89,11 +90,15 @@ class Update extends Component {
     }
 
 
+    filChangeHandler = e => {
+        this.setState({ file: URL.createObjectURL(e.target.files[0]) })
+    }
+
     submitHandler = e => {
         e.preventDefault()
-        let { subcategory_id, title, price, vat, discount, description, colors, sizes, tags } = this.state
+        let { subcategory_id, title, price, vat, discount, description, colors, sizes, tags, file } = this.state
 
-        let arr = { subcategory_id, title, price, vat, discount, description, colors, sizes, tags, id: this.props.editItem.id }
+        let arr = { subcategory_id, title, price, vat, discount, description, colors, sizes, tags, file, id: this.props.editItem.id }
         store.getActions().product.update(arr)
 
         this.setState({
@@ -105,13 +110,16 @@ class Update extends Component {
             description: '',
             colors: '',
             sizes: '',
-            tags: ''
+            tags: '',
+            file: ''
         })
         alert('Product Update successfully')
         this.props.editHandler()
     }
+
+
     render() {
-        let { category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags } = this.state
+        let { category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags, file } = this.state
 
 
 
@@ -228,6 +236,14 @@ class Update extends Component {
                             onChange={this.changeHandler}
                             required
                         />
+                    </div>
+                    <div>
+                        <Input
+                            type='file'
+                            onChange={this.filChangeHandler}
+                            required
+                        />
+                        {file && <img src={file} alt='pdt' height='100' />}
                     </div>
                     <Button type='submit'>Update</Button>
                 </FormGroup>

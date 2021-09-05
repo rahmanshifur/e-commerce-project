@@ -13,8 +13,9 @@ class Create extends Component {
         description: '',
         colors: '',
         sizes: '',
-        tags: ''
-
+        tags: '',
+        file: '',
+        files: []
     }
 
 
@@ -27,9 +28,9 @@ class Create extends Component {
 
     submitHandler = e => {
         e.preventDefault()
-        let { subcategory_id, title, price, vat, discount, description, colors, sizes, tags } = this.state
+        let { subcategory_id, title, price, vat, discount, description, colors, sizes, tags, file, files } = this.state
 
-        let arr = { subcategory_id, title, price, vat, discount, description, colors, sizes, tags }
+        let arr = { subcategory_id, title, price, vat, discount, description, colors, sizes, tags, file, files }
         store.getActions().product.create(arr)
 
         this.setState({
@@ -41,13 +42,36 @@ class Create extends Component {
             description: '',
             colors: '',
             sizes: '',
-            tags: ''
+            tags: '',
+            file: '',
+            files: []
         })
         alert('Product create successfully')
         this.props.editHandler()
     }
+
+
+    filChangeHandler = e => {
+        this.setState({ file: URL.createObjectURL(e.target.files[0]) })
+    }
+    filsChangeHandler = e => {
+        if (e.target.files.length === 0) {
+            this.setState({ files: [] })
+            return;
+        }
+
+        let imgArr = []
+        for (let i = 0; i < e.target.files.length; i++) {
+            imgArr.push(URL.createObjectURL(e.target.files[i]))
+        }
+        this.setState({ files: imgArr })
+    }
+
+
+
+
     render() {
-        let { category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags } = this.state
+        let { category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags, file, files } = this.state
 
         const colorData = store.getState().color.data
         const sizeData = store.getState().size.data
@@ -169,6 +193,22 @@ class Create extends Component {
                             onChange={this.changeHandler}
                             required
                         />
+                    </div>
+                    <div>
+                        <Input
+                            type='file'
+                            onChange={this.filChangeHandler}
+                            required
+                        />
+                        {file && <img src={file} alt='pdt' height='100' />}
+                    </div>
+                    <div>
+                        <Input
+                            type='file'
+                            onChange={this.filsChangeHandler}
+                            multiple
+                        />
+                        {files && files.length !== 0 && files.map(item => <img src={item} key={item} alt='pdt' height='50' width='50' />)}
                     </div>
                     <Button type='submit'>Save</Button>
                 </FormGroup>

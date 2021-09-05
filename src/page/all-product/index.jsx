@@ -2,11 +2,18 @@ import { Col, Container, Row, Card, CardBody, CardImg, CardText, CardTitle, Card
 import Sidebar from "../../components/layout/sidebar";
 import pdtImg from '../../assets/img/mac-mini.jpg'
 import { Link } from '@reach/router';
-import { useStoreState } from 'easy-peasy';
+import { useStoreState, useStoreActions } from 'easy-peasy';
 
 
 function AllProduct() {
     const pdtData = useStoreState(state => state.product.data)
+    const addToCart = useStoreActions(action => action.cart.create)
+
+    const addToCartHandler = pdt => {
+        pdt.quantity = 1
+        addToCart(pdt)
+    }
+
     return (
         <section>
             <Container>
@@ -25,7 +32,7 @@ function AllProduct() {
                                     <CardSubtitle tag="h6" className="mb-2 text-muted"> Discount :{pdt.discount}</CardSubtitle>
                                     <CardText>{pdt.description}</CardText>
                                     <Link to={`/product-details/${pdt.id}`} className='btn btn-primary'>Details </Link>
-                                    <Button className='ms-auto'>Add to cart</Button>
+                                    <Button className='ms-auto' onClick={() => addToCartHandler(pdt)}>Add to cart</Button>
                                 </CardBody>
                             </Card>
 

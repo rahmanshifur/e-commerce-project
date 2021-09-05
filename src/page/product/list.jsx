@@ -26,6 +26,7 @@ export default ({ editHandler, isOpen }) => {
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>Image</th>
                         <th>ID</th>
                         <th>Category Name</th>
                         <th>Subcategory Name</th>
@@ -45,6 +46,7 @@ export default ({ editHandler, isOpen }) => {
 
                         <tr key={item.id}>
                             <td>{++i}</td>
+                            <td><img src={item.file} alt='Product' height='100' /></td>
                             <td>{item.id}</td>
                             <td>{subcategoryData.map(scat => scat.id === item.subcategory_id && catData.map(cat => cat.id === scat.category && <span key={cat.id}>{cat.name}</span>))}</td>
                             <td>{subcategoryData.map(sctg => sctg.id === item.subcategory_id && <>{sctg.name}</>)}</td>

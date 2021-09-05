@@ -18,6 +18,8 @@ const ProductModel = {
             colors: payload.colors,
             sizes: payload.sizes,
             tags: payload.tags,
+            file: payload.file,
+            files: payload.files,
         }
         state.data.push(obj)
         setLocalData('product', state.data)

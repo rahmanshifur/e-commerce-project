@@ -35,7 +35,6 @@ function ProductDetails(props) {
         if (cartData.length === 0) {
             item.quantity = quantity
             addToCart(item)
-            alert('Product add to cart!')
             return;
         }
 
@@ -46,7 +45,6 @@ function ProductDetails(props) {
         if (checkPdt.length === 0) {
             item.quantity = quantity
             addToCart(item)
-            alert('Product add to cart!')
             return;
         }
 

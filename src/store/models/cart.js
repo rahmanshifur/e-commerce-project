@@ -6,8 +6,16 @@ const CartModel = {
     data: getLocalData('cart'),
     editItem: {},
     create: action((state, payload) => {
+        if (state.data.length !== 0) {
+            let pdt = state.data.filter(item => item.id === payload.id)
+            if (pdt.length > 0) {
+                alert('This product already in cart!')
+                return;
+            }
+        }
         state.data.push(payload)
         setLocalData('cart', state.data)
+        alert('Product add to cart!')
     }),
     update: action((state, payload) => {
         let arr = state.data.map(item => {
