@@ -9,16 +9,18 @@ import { useState } from 'react';
 
 export default () => {
     const [isOpen, setIsOpen] = useState(false)
-    const [editItem, setEditItem] = useState({})
+    const [editItem, setEditITem] = useState({})
 
-    const editHandler = ((item = {}) => {
+    const editHandler = (item = {}) => {
         if (Object.keys(item).length !== 0) {
+
             setIsOpen(true)
         } else {
             setIsOpen(!isOpen)
+
         }
-        setEditItem(item)
-    })
+        setEditITem(item)
+    }
 
     return (
         <div>

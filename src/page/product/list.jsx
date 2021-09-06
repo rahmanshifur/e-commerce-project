@@ -1,3 +1,4 @@
+import { Link } from "@reach/router"
 import { useStoreActions, useStoreState } from "easy-peasy"
 import { Button, Table } from "reactstrap"
 
@@ -60,6 +61,7 @@ export default ({ editHandler, isOpen }) => {
                             <td>{tagData.map(tg => tg.id === item.tags && <>{tg.name}</>)}</td>
                             <td>
                                 <Button onClick={() => editHandler(item)}>Edit</Button>
+                                <Link to={`/product-details/${item.id}`} className='btn btn-primary'>Details</Link>
                                 <Button onClick={() => remove(item.id)} className='btn-danger'>Delete</Button>
                             </td>
                         </tr>

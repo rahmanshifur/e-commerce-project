@@ -10,7 +10,8 @@ class Create extends Component {
         confirmPassword: '',
         address: '',
         contact: '',
-        status: ''
+        status: '',
+        file: ''
     }
 
     changeHandler = e => {
@@ -19,15 +20,19 @@ class Create extends Component {
         })
     }
 
+    fileChangeHandler = e => {
+        this.setState({ file: URL.createObjectURL(e.target.files[0]) })
+    }
+
     submitHandler = e => {
         e.preventDefault()
-        let { name, email, password, confirmPassword, address, contact, status } = this.state
+        let { name, email, password, confirmPassword, address, contact, status, file } = this.state
         if (password !== confirmPassword) {
             alert(`ConfirmPassword doesn't match`)
             return
         }
 
-        let arr = { name, email, password, address, contact, status }
+        let arr = { name, email, password, address, contact, status, file }
         store.getActions().user.create(arr)
 
         this.setState({
@@ -37,13 +42,14 @@ class Create extends Component {
             confirmPassword: '',
             address: '',
             contact: '',
+            file: ''
         })
         this.props.editHandler()
         alert('User create successfully')
     }
 
     render() {
-        let { name, email, password, confirmPassword, address, contact, status } = this.state
+        let { name, email, password, confirmPassword, address, contact, status, file } = this.state
 
         return (
             <Form onSubmit={this.submitHandler}>
@@ -107,6 +113,15 @@ class Create extends Component {
                         <option value={1}>Active</option>
                         <option value={0}>Inactive</option>
                     </Input>
+                    <div>
+
+                        <Input
+                            type='file'
+                            onChange={this.fileChangeHandler}
+                            required
+                        />
+                        {file && <img src={file} alt='userImg' height='100' />}
+                    </div>
                     <Button type='submit'>Save</Button>
                 </FormGroup>
             </Form>

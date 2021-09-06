@@ -94,6 +94,18 @@ class Update extends Component {
         this.setState({ file: URL.createObjectURL(e.target.files[0]) })
     }
 
+    filesChangeHandler = e => {
+        if (e.target.files.length === 0) {
+            this.setState({ files: [] })
+            return
+        }
+
+        let imgArr = []
+        for (let i = 0; i < e.target.files.length; i++) {
+            imgArr.push(URL.createObjectURL(e.target.files[i]))
+        }
+        this.setState({ files: imgArr })
+    }
 
     submitHandler = e => {
         e.preventDefault()
@@ -245,13 +257,14 @@ class Update extends Component {
                         />
                         {file && <img src={file} alt='pdt' height='100' />}
                     </div>
-                    {/* <div>
+                    <div>
                         <Input
                             type='file'
-                            onChange={this.fileChangeHandler}
+                            onChange={this.filesChangeHandler}
                             multiple
                         />
-                    </div> */}
+                        {files && files.length !== 0 && files.map(item => <img src={item} key={item} alt='pdt' height='70' />)}
+                    </div>
                     <Button type='submit'>Update</Button>
                 </FormGroup>
             </Form>

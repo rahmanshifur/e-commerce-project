@@ -14,14 +14,12 @@ const UserModel = {
             contact: payload.contact,
             address: payload.address,
             password: payload.password,
+            file: payload.file,
             status: payload.status,
         }
         state.data.push(obj)
         setLocalData('user', state.data)
 
-    }),
-    edit: action((state, payload) => {
-        state.editItem = state.data.filter(item => item.id === payload)[0]
     }),
     update: action((state, payload) => {
         let arr = state.data.map(item => {
@@ -79,7 +77,6 @@ const UserModel = {
                 return item
             }
         })
-        console.log(arr)
         state.tmpData = state.data
         state.data = arr
     }),

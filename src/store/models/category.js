@@ -9,7 +9,8 @@ const CategoryModel = {
     create: action((state, payload) => {
         let obj = {
             id: shortid.generate(),
-            name: payload,
+            name: payload.name,
+            file: payload.file,
         }
         state.data.push(obj)
         setLocalData('category', state.data)

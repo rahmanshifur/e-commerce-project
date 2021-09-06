@@ -11,13 +11,10 @@ const SubCategoryModel = {
             id: shortid.generate(),
             name: payload.name,
             category: payload.category,
+            file: payload.file,
         }
         state.data.push(obj)
         setLocalData('subcategory', state.data)
-
-    }),
-    edit: action((state, payload) => {
-        state.editItem = state.data.filter(item => item.id === payload)[0]
 
     }),
     update: action((state, payload) => {

@@ -16,6 +16,7 @@ export default ({ editHandler, isOpen }) => {
                     <h1>List of Category</h1>
                     <tr>
                         <th>#</th>
+                        <th>Image</th>
                         <th>ID</th>
                         <th>Name</th>
                         <th>Action</th>
@@ -26,6 +27,7 @@ export default ({ editHandler, isOpen }) => {
 
                         <tr key={item.id}>
                             <td>{++i}</td>
+                            <td>{item.file}</td>
                             <td>{item.id}</td>
                             <td>{item.name}</td>
                             <td>

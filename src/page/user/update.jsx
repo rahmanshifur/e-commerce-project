@@ -10,14 +10,15 @@ class Update extends Component {
         confirmPassword: '',
         address: '',
         contact: '',
-        status: ''
+        status: '',
+        file: ''
     }
 
     componentDidMount = e => {
-        let { name, email, password, confirmPassword, address, contact, status } = this.props.editItem
+        let { name, email, password, confirmPassword, address, contact, status, file } = this.props.editItem
 
         this.setState({
-            name, email, password, confirmPassword, address, contact, status
+            name, email, password, confirmPassword, address, contact, status, file
         })
 
     }
@@ -36,14 +37,19 @@ class Update extends Component {
         })
     }
 
+    fileChangeHandler = e => {
+        this.setState({ file: URL.createObjectURL(e.target.files[0]) })
+    }
+
+
     submitHandler = e => {
         e.preventDefault()
-        let { name, email, password, confirmPassword, address, contact, status } = this.state
+        let { name, email, password, confirmPassword, address, contact, status, file } = this.state
         if (password !== confirmPassword) {
             alert(`ConfirmPassword doesn't match`)
         }
 
-        let arr = { name, email, password, address, contact, status, id: this.props.editItem.id }
+        let arr = { name, email, password, address, contact, status, file, id: this.props.editItem.id }
         store.getActions().user.update(arr)
 
         this.setState({
@@ -53,13 +59,14 @@ class Update extends Component {
             confirmPassword: '',
             address: '',
             contact: '',
+            file: ''
         })
         this.props.editHandler()
         alert('User Update successfully')
     }
 
     render() {
-        let { name, email, password, confirmPassword, address, contact, status } = this.state
+        let { name, email, password, confirmPassword, address, contact, status, file } = this.state
 
         return (
             <Form onSubmit={this.submitHandler}>
@@ -122,6 +129,15 @@ class Update extends Component {
                         <option value={1}>Active</option>
                         <option value={0}>Inactive</option>
                     </Input>
+                    <div>
+
+                        <Input
+                            type='file'
+                            onChange={this.fileChangeHandler}
+                            required
+                        />
+                        {file && <img src={file} alt='userImg' height='100' />}
+                    </div>
                     <Button type='submit'>Update</Button>
                 </FormGroup>
             </Form>

@@ -6,10 +6,12 @@ import { Button, Form, FormGroup, Input } from "reactstrap"
 export default ({ editItem, editHandler }) => {
     const [name, setName] = useState('')
     const [category, setCategory] = useState('')
+    const [file, setFile] = useState('')
 
     useEffect(() => {
         setName(editItem.name)
         setCategory(editItem.category)
+        setFile(editItem.file)
     }, [editItem.name])
 
     const { update } = useStoreActions(action => action.subcategory)
@@ -21,22 +23,27 @@ export default ({ editItem, editHandler }) => {
         update({
             id: editItem.id,
             name: name,
-            category: category
+            category: category,
+            file: file,
         })
 
         setName('')
         setCategory('')
+        setFile('')
         editHandler()
     }
     return (
         <Form onSubmit={submitHandler} >
-            <FormGroup className='d-flex'>
+            <div>
                 <Input
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder='Enter name'
                     required
                 />
+            </div>
+            <div>
+
                 <select
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
@@ -46,10 +53,18 @@ export default ({ editItem, editHandler }) => {
                     <option value=''>Select Category</option>
                     {data && data.length > 0 && data.map((item) =>
                         <option key={item.id} value={item.id}>{item.name}</option>)}
-
                 </select>
-                <Button type='submit'>Update</Button>
-            </FormGroup>
+            </div>
+            <div>
+                <Input
+                    type='file'
+                    onChange={(e) => setFile(URL.createObjectURL(e.target.files[0]))}
+                    required
+                />
+                {file && <img src={file} alt='scatImg' height='100' />}
+            </div>
+
+            <Button type='submit'>Save</Button>
         </Form>
     )
 }
