@@ -12,8 +12,10 @@ import ReviewModel from './models/review';
 import CartModel from './models/cart';
 import OrderModel from "./models/order";
 import AuthModel from "./models/auth";
+import UserReviewModel from "./models/user-review";
 
 const store = createStore({
+    userReview: UserReviewModel,
     auth: AuthModel,
     order: OrderModel,
     cart: CartModel,

@@ -27,11 +27,13 @@ class Update extends Component {
         id: '',
         file: '',
         files: []
+
     }
 
 
     componentDidMount() {
         let { subcategory_id, title, price, vat, discount, description, colors, sizes, tags, id, file, files } = this.props.editItem
+
         let category_id = ''
         subcategoryData.forEach(scat => {
             if (scat.id === subcategory_id) {
@@ -107,11 +109,16 @@ class Update extends Component {
         this.setState({ files: imgArr })
     }
 
+    filChangeHandler = e => {
+        this.setState({ file: URL.createObjectURL(e.target.files[0]) })
+    }
+
     submitHandler = e => {
         e.preventDefault()
         let { subcategory_id, title, price, vat, discount, description, colors, sizes, tags, file, files } = this.state
 
         let arr = { subcategory_id, title, price, vat, discount, description, colors, sizes, tags, file, files, id: this.props.editItem.id }
+
         store.getActions().product.update(arr)
 
         this.setState({
@@ -130,6 +137,8 @@ class Update extends Component {
         alert('Product Update successfully')
         this.props.editHandler()
     }
+
+
     render() {
         let { category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags, file, files } = this.state
 
@@ -253,6 +262,7 @@ class Update extends Component {
                         <Input
                             type='file'
                             onChange={this.fileChangeHandler}
+
                             required
                         />
                         {file && <img src={file} alt='pdt' height='100' />}
@@ -265,6 +275,7 @@ class Update extends Component {
                         />
                         {files && files.length !== 0 && files.map(item => <img src={item} key={item} alt='pdt' height='70' />)}
                     </div>
+
                     <Button type='submit'>Update</Button>
                 </FormGroup>
             </Form>

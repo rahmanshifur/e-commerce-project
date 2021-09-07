@@ -14,6 +14,7 @@ const CartModel = {
             }
         }
         alert('Product add to cart!')
+
         state.data.push(payload)
         setLocalData('cart', state.data)
     }),

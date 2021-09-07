@@ -67,6 +67,9 @@ class Create extends Component {
         alert('Product create successfully')
         this.props.editHandler()
     }
+
+
+
     render() {
         let { category_id, subcategory_id, title, price, vat, discount, description, colors, sizes, tags, file, files } = this.state
 
@@ -202,10 +205,11 @@ class Create extends Component {
                     <div>
                         <Input
                             type='file'
+
                             onChange={this.filesChangeHandler}
                             multiple
                         />
-                        {files && files.length !== 0 && files.map(item => <img src={item} key={item} alt='pdt' height='70' />)}
+                        {files && files.length !== 0 && files.map(item => <img src={item} key={item} alt='pdt' height='50' width='50' />)}
                     </div>
                     <Button type='submit'>Save</Button>
                 </FormGroup>

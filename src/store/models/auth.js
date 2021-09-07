@@ -17,7 +17,6 @@ const AuthModel = {
         alert('Login successfully')
         state.data = authUser
         setLocalData('auth', state.data)
-
         navigate(-1)
     }),
     logout: action((state) => {

@@ -20,7 +20,7 @@ class Create extends Component {
         })
     }
 
-    fileChangeHandler = e => {
+    filChangeHandler = e => {
         this.setState({ file: URL.createObjectURL(e.target.files[0]) })
     }
 
@@ -114,13 +114,12 @@ class Create extends Component {
                         <option value={0}>Inactive</option>
                     </Input>
                     <div>
-
                         <Input
                             type='file'
                             onChange={this.fileChangeHandler}
                             required
                         />
-                        {file && <img src={file} alt='userImg' height='100' />}
+                        {file && <img src={file} alt='pdt' height='100' />}
                     </div>
                     <Button type='submit'>Save</Button>
                 </FormGroup>

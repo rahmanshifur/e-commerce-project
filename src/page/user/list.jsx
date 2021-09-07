@@ -31,7 +31,7 @@ export default ({ editHandler, isOpen }) => {
 
                         <tr key={item.id}>
                             <td>{++i}</td>
-                            <td>{item.file}</td>
+                            <td><img src={item.file} alt='pdt' height='100' /></td>
                             <td>{item.id}</td>
                             <td>{item.name}</td>
                             <td>{item.email}</td>

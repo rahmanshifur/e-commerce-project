@@ -1,16 +1,24 @@
 import { useState } from 'react';
 import { useStoreState, useStoreActions } from 'easy-peasy';
-import { Col, Container, Row, CardTitle, CardSubtitle, CardText, CardBody, CardImg, Button, Input } from "reactstrap";
+import { Form, Col, Container, Row, CardTitle, CardSubtitle, CardText, CardBody, CardImg, Button, Input } from "reactstrap";
 import Sidebar from "../../components/layout/sidebar";
+import UserReview from '../user-review';
+import { dateTime } from './../../util/helper';
+
 
 
 
 
 function ProductDetails(props) {
     const [quantity, setQuantity] = useState(1)
+    const [comment, setComment] = useState('')
+    const [star, setStar] = useState('')
+
+
 
     const pdtData = useStoreState(state => state.product.data)
     const selPdt = pdtData.filter(item => item.id === props.pdtId)[0]
+
 
     const clrData = useStoreState(state => state.color.data)
     const sizData = useStoreState(state => state.size.data)
@@ -20,6 +28,30 @@ function ProductDetails(props) {
     const cartData = useStoreState(state => state.cart.data)
     const addToCart = useStoreActions(action => action.cart.create)
     const updateQuantity = useStoreActions(action => action.cart.update)
+
+
+
+
+
+    const { create } = useStoreActions(action => action.userReview)
+    const authData = useStoreState(state => state.auth.data)
+    const userReviewData = useStoreState(state => state.userReview.data)
+
+    const submitHandler = e => {
+        e.preventDefault()
+        let obj = {
+            comment: comment,
+            star: star,
+            userId: authData.id,
+            pdtId: props.pdtId
+        }
+        create(obj)
+        console.log(obj)
+        setComment('')
+        setStar('')
+
+    }
+
 
 
     const addToCartHandler = (item) => {
@@ -44,7 +76,6 @@ function ProductDetails(props) {
         if (checkPdt.length === 0) {
             item.quantity = quantity
             addToCart(item)
-
             return;
         }
 
@@ -66,7 +97,7 @@ function ProductDetails(props) {
                                 <div>
                                     <img src={selPdt.file} alt='product' height='250' />
                                     <div>
-                                        <img src={selPdt.files} alt='sub-product' height='100' />
+                                        {selPdt.files && selPdt.files.length !== 0 && selPdt.files.map(item => <img src={item} key={item} alt='pdt' height='100' width='100' />)}
                                     </div>
                                 </div>
 
@@ -93,10 +124,50 @@ function ProductDetails(props) {
                                     onChange={(e) => setQuantity(e.target.value)}
                                 />
                                 <Button onClick={() => addToCartHandler(selPdt)}>Add Too Cart</Button>
+
                             </Col>
                         </Row>
+
                     </Col>
                 </Row>
+                {authData.length !== 0 &&
+                    <Row>
+                        <h3>Product Review</h3>
+                        <Form onSubmit={submitHandler}>
+                            <div>
+                                <Input
+                                    type='textarea'
+                                    value={comment}
+                                    onChange={(e) => setComment(e.target.value)}
+                                    placeholder='Description'
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <Input
+                                    type='select'
+                                    value={star}
+                                    onChange={(e) => setStar(e.target.value)}
+                                    placeholder='Enter number'
+                                    required
+                                >
+                                    <option value=''>Select Star</option>
+                                    <option value='1'>1 Star</option>
+                                    <option value='2'>2 Star</option>
+                                    <option value='3'>3 Star</option>
+                                    <option value='4'>4 Star</option>
+                                    <option value='5'>5 Star</option>
+                                </Input>
+                            </div>
+                            <Button type='submit'>Save</Button>
+                        </Form>
+                        {userReviewData && userReviewData.length > 0 && userReviewData.map(item => item.pdtId === props.pdtId && <span key={item.id}>
+                            <h3>{item.comment}</h3>
+                            <h3>{item.star}</h3>
+                            <h3>{dateTime(item.date)}</h3>
+                        </span>)}
+                    </Row>
+                }
             </Container>
         </section>
     )

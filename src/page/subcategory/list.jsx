@@ -9,7 +9,7 @@ export default ({ editHandler, isOpen }) => {
     return (
         <div>
             <div>
-                <h1>List ofColor</h1>
+                <h1>List of Subcategory</h1>
                 <Button onClick={() => editHandler()}>{isOpen ? 'Close' : 'Add'}</Button>
             </div>
             <Table>
@@ -28,7 +28,7 @@ export default ({ editHandler, isOpen }) => {
 
                         <tr key={item.id}>
                             <td>{++i}</td>
-                            <td>{item.file}</td>
+                            <td><img src={item.file} alt='pdt' height='100' /></td>
                             <td>{item.id}</td>
                             <td>{item.name}</td>
                             <td>{categoryData.map(ctg => ctg.id === item.category && <> {ctg.name}</>)}</td>

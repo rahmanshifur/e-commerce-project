@@ -4,6 +4,7 @@ import { Link } from '@reach/router';
 import { useStoreActions, useStoreState } from 'easy-peasy';
 
 
+
 function AllProduct() {
     const pdtData = useStoreState(state => state.product.data)
     const addToCart = useStoreActions(action => action.cart.create)
@@ -13,6 +14,7 @@ function AllProduct() {
         addToCart(pdt)
 
     }
+
     return (
         <section>
             <Container>

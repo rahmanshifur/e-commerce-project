@@ -1,7 +1,8 @@
 import { Link } from '@reach/router'
 import { useStoreActions, useStoreState } from 'easy-peasy'
 import { useState } from 'react'
-import { Collapse, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, UncontrolledDropdown } from "reactstrap"
+
+import { Collapse, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, Dropdown, UncontrolledDropdown } from "reactstrap"
 
 
 export default () => {
@@ -15,21 +16,22 @@ export default () => {
 
 
     return (
-        <Navbar color='dark' dark expand='md' className='my-5 p-2 '>
+        <Navbar id='navbar' color='dark' dark expand='md' className='my-5 p-2 '>
             <NavbarBrand href='/' className='ps-3 '>LOGO</NavbarBrand>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
                 <Nav className='ms-auto' navbar>
+
                     {cartData && cartData.length !== 0 &&
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>Cart</DropdownToggle>
-                            <DropdownMenu right >
+                            <DropdownMenu right style={{ width: '250px' }}>
                                 {cartData.map((item, i) =>
                                     <DropdownItem key={item.id} className='d-flex justify-content-between'>
                                         <span>{++i}.</span>
                                         <span>{item.title}</span>
                                         <span>{item.quantity}x{item.price * item.quantity}</span>
-                                        <span onClick={() => cartRemoveHandler(item.id)}>x</span>
+                                        <span className='px-2 bg-danger' onClick={() => cartRemoveHandler(item.id)}>x</span>
                                     </DropdownItem>)}
                             </DropdownMenu>
                         </UncontrolledDropdown>

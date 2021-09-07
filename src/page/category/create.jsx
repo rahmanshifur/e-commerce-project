@@ -9,6 +9,10 @@ export default ({ editHandler }) => {
 
     const { create } = useStoreActions(action => action.category)
 
+    // const fileChangeHandler = e => {
+    //     setFile(URL.createObjectURL(e.target.files[0]))
+    // }
+
     const submitHandler = e => {
         e.preventDefault()
 
@@ -31,6 +35,7 @@ export default ({ editHandler }) => {
                 <Input
                     type='file'
                     onChange={(e) => setFile(URL.createObjectURL(e.target.files[0]))}
+                    // onChange={(e) => setFile(URL.createObjectURL(e.target.files[0]))}
                     required
                 />
                 {file && <img src={file} alt='catImg' height='100' />}
